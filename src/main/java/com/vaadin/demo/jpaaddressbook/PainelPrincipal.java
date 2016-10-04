@@ -35,6 +35,7 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.ComponentContainer;
+import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.Table;
@@ -43,7 +44,7 @@ import com.vaadin.ui.Tree;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-public class PainelPrincipal extends HorizontalSplitPanel implements ComponentContainer {
+public class PainelPrincipal extends GridLayout implements ComponentContainer {
 
 	private Tree groupTree;
 
@@ -55,24 +56,25 @@ public class PainelPrincipal extends HorizontalSplitPanel implements ComponentCo
 	private Button deleteButton;
 	private Button editButton;
 
-	private JPAContainer<Partido> containerPartidos;
+	//private JPAContainer<Partido> containerPartidos;
 	private JPAContainer<Politico> containerPoliticos;
 
 	private Partido departmentFilter;
 	private String textFilter;
 
-	public PainelPrincipal() {
-		containerPartidos = new ContainerJPAPartido();
-		containerPoliticos = JPAContainerFactory.make(Politico.class, MainUI.PERSISTENCE_UNIT);
+	public PainelPrincipal(JPAContainer<Politico> containerPoliticos) {
+		this.containerPoliticos = containerPoliticos;
+		//containerPartidos = new ContainerJPAPartido();
+		//containerPoliticos = JPAContainerFactory.make(Politico.class, MainUI.PERSISTENCE_UNIT);
 		// buildTree();
 		buildMainArea();
 
-		setSplitPosition(30);
+		//setSplitPosition(30);
 	}
 
 	private void buildMainArea() {
-		VerticalLayout verticalLayout = new VerticalLayout();
-		setSecondComponent(verticalLayout);
+		//VerticalLayout verticalLayout = new VerticalLayout();
+		//setSecondComponent(verticalLayout);
 
 		personTable = new Table(null, containerPoliticos);
 		personTable.setSelectable(true);
@@ -101,7 +103,7 @@ public class PainelPrincipal extends HorizontalSplitPanel implements ComponentCo
 		});
 
 		personTable.setVisibleColumns(
-				new Object[] { "firstName", "lastName", "phoneNumber", "street", "city", "zipCode" });
+				new Object[] { "nome", "codinomes", "profissoes", "legislaturas", "curriculo", "uf" });
 
 		HorizontalLayout toolbar = new HorizontalLayout();
 		newButton = new Button("Add");
@@ -160,34 +162,10 @@ public class PainelPrincipal extends HorizontalSplitPanel implements ComponentCo
 		toolbar.setExpandRatio(searchField, 1);
 		toolbar.setComponentAlignment(searchField, Alignment.TOP_RIGHT);
 
-		verticalLayout.addComponent(toolbar);
-		verticalLayout.addComponent(personTable);
-		verticalLayout.setExpandRatio(personTable, 1);
-		verticalLayout.setSizeFull();
-	}
-
-	private void buildTree() {
-		groupTree = new Tree(null, containerPartidos);
-		groupTree.setItemCaptionPropertyId("name");
-
-		groupTree.setImmediate(true);
-		groupTree.setSelectable(true);
-		groupTree.addListener(new Property.ValueChangeListener() {
-
-			@Override
-			public void valueChange(ValueChangeEvent event) {
-				Object id = event.getProperty().getValue();
-				if (id != null) {
-					Partido entity = containerPartidos.getItem(id).getEntity();
-					departmentFilter = entity;
-				} else if (departmentFilter != null) {
-					departmentFilter = null;
-				}
-				updateFilters();
-			}
-
-		});
-		setFirstComponent(groupTree);
+		this.addComponent(toolbar);
+		this.addComponent(personTable);
+		//this.setExpandRatio(personTable, 1);
+		this.setSizeFull();
 	}
 
 	private void updateFilters() {
@@ -202,8 +180,8 @@ public class PainelPrincipal extends HorizontalSplitPanel implements ComponentCo
 			}
 		}
 		if (textFilter != null && !textFilter.equals("")) {
-			Or or = new Or(new Like("firstName", textFilter + "%", false),
-					new Like("lastName", textFilter + "%", false));
+			Or or = new Or(new Like("nome", textFilter + "%", false),
+					new Like("codinomes", textFilter + "%", false));
 			containerPoliticos.addContainerFilter(or);
 		}
 		containerPoliticos.applyFilters();

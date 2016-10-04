@@ -17,78 +17,91 @@ public class Politico {
     private Long id;
     @NotNull
     @Size(min = 2, max = 24)
-    private String firstName;
+    private String nome;
     @Size(min = 2, max = 24)
-    private String lastName;
-    private String street;
-    private String city;
-    private String zipCode;
-    private String phoneNumber;
-    @NotNull
+    private String codinomes;
+    private String profissoes;
+    private String cargos;
+    private String legislaturas;
+    private String curriculo;
+    private String foto;
+    
+    private String camaraPk;
+    private String senadoId;
+    private String uf;
+    //@NotNull
     @ManyToMany
     private Set<Partido> partidos;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public Set<Partido> getPartidos() {
-        return partidos;
-    }
-
-    public void setPartidos(Set<Partido> group) {
-        partidos = group;
-    }
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getCodinomes() {
+		return codinomes;
+	}
+	public void setCodinomes(String codinomes) {
+		this.codinomes = codinomes;
+	}
+	public String getProfissoes() {
+		return profissoes;
+	}
+	public void setProfissoes(String profissoes) {
+		this.profissoes = profissoes;
+	}
+	public String getCargos() {
+		return cargos;
+	}
+	public void setCargos(String cargos) {
+		this.cargos = cargos;
+	}
+	public String getLegislaturas() {
+		return legislaturas;
+	}
+	public void setLegislaturas(String legislaturas) {
+		this.legislaturas = legislaturas;
+	}
+	public String getCurriculo() {
+		return curriculo;
+	}
+	public void setCurriculo(String curriculo) {
+		this.curriculo = curriculo;
+	}
+	public String getFoto() {
+		return foto;
+	}
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+	public String getCamaraPk() {
+		return camaraPk;
+	}
+	public void setCamaraPk(String camaraPk) {
+		this.camaraPk = camaraPk;
+	}
+	public String getSenadoId() {
+		return senadoId;
+	}
+	public void setSenadoId(String senadoId) {
+		this.senadoId = senadoId;
+	}
+	public String getUf() {
+		return uf;
+	}
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+	public Set<Partido> getPartidos() {
+		return partidos;
+	}
+	public void setPartidos(Set<Partido> partidos) {
+		this.partidos = partidos;
+	}
 }

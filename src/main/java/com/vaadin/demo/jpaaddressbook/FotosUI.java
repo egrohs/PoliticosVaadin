@@ -1,31 +1,29 @@
 package com.vaadin.demo.jpaaddressbook;
 
-import java.io.File;
-
 import com.vaadin.addon.jpacontainer.EntityItem;
 import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.addon.jpacontainer.JPAContainerFactory;
 import com.vaadin.addon.jpacontainer.provider.CachingLocalEntityProvider;
 import com.vaadin.data.Container;
 import com.vaadin.data.Container.Viewer;
-import com.vaadin.data.util.filter.Compare.Equal;
 import com.vaadin.data.util.filter.Like;
 import com.vaadin.data.util.filter.Or;
 import com.vaadin.demo.jpaaddressbook.domain.Politico;
-import com.vaadin.server.FileResource;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.event.MouseEvents;
+import com.vaadin.server.ExternalResource;
+import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.GridLayout;
-import com.vaadin.ui.TextField;
+import com.vaadin.ui.Image;
+import com.vaadin.ui.TabSheet;
 
-public class FotosUI extends GridLayout implements Viewer {
+public class FotosUI extends TabSheet implements Viewer {
 	private JPAContainer<Politico> containerPoliticos;
 	private String textFilter;
-	private TextField tf;
+	//private TextField tf;
 
 	public FotosUI() {
-		super(10, 10);
+		//super(10, 10);
 		// containerPoliticos = new BeanItemContainer<Politico>(Politico.class);
 		containerPoliticos = JPAContainerFactory.make(Politico.class, MainUI.PERSISTENCE_UNIT);
 		containerPoliticos.setEntityProvider(new CachingLocalEntityProvider<Politico>(Politico.class,
@@ -38,20 +36,25 @@ public class FotosUI extends GridLayout implements Viewer {
 	private void montaVisao() {
 		this.removeAllComponents();
 		this.setContainerDataSource(containerPoliticos);
-		tf = new TextField("cunha");
-		this.addComponent(tf);
-		Button b = new Button("Filtrar");
-		this.addComponent(b);
-		b.addClickListener(new ClickListener() {
-			@Override
-			public void buttonClick(ClickEvent event) {
-				System.err.println("clicou filtrar");
-				// containerPoliticos.addEntity(beanItem.getBean());
-				textFilter = tf.getValue();
-				updateFilters();
-			}
-		});
+
+//		tf = new TextField("texto");
+//		this.addComponent(tf);
+//		tf.addTextChangeListener(new TextChangeListener() {
+//			@Override
+//			public void textChange(TextChangeEvent event) {
+//				System.err.println("clicou filtrar");
+//				// containerPoliticos.addEntity(beanItem.getBean());
+//				textFilter = tf.getValue();
+//				updateFilters();
+//			}
+//		});
+
+		//TabSheet tabsheet = new TabSheet();
+		this.addTab(montaTabImagens(), "Imagens");
+		this.addTab(new PainelPrincipal(containerPoliticos), "Tabela");
+
 		// this.addComponent(, 2, 2);
+		//this.addComponent(tabsheet);
 	}
 
 	private void updateFilters() {
@@ -72,25 +75,38 @@ public class FotosUI extends GridLayout implements Viewer {
 
 	@Override
 	public void setContainerDataSource(Container newDataSource) {
-		FileResource resource = new FileResource(new File("walter.jpg"));
-		for (Object o : newDataSource.getItemIds()) {
-			Politico p = (Politico) ((EntityItem) newDataSource.getItem(o)).getEntity();
+		containerPoliticos = (JPAContainer<Politico>) newDataSource;
+	}
 
-			// Image image = new Image(p.getLastName(), resource);
-			Button pictureButton = new Button(p.getLastName());
-			// pictureButton.setStyleName("Button.STYLE_LINK");
-			pictureButton.setIcon(resource);// new
-											// ExternalResource("http://vaadin.com/image/user_male_portrait?img_id=44268&t=1251193981449"));
-			pictureButton.setSizeUndefined();
-			this.addComponent(pictureButton);
-			pictureButton.addClickListener(new ClickListener() {
-				@Override
-				public void buttonClick(ClickEvent event) {
-					// NotificationUtil.showNotification("CLICK!", "");
-					System.err.println("CLICOU");
-				}
-			});
+	private Component montaTabImagens() {
+		GridLayout gl = new GridLayout(10, 10);
+		
+		// FileResource resource = new FileResource(new File("walter.jpg"));
+		int i = 0;
+		for (Object o : getContainerDataSource().getItemIds()) {
+			if (i > 40) {
+				break;
+			}
+			// for(int i=0;i<10;i++){
+			// newDataSource.getItem
+			Politico p = (Politico) ((EntityItem) getContainerDataSource().getItem(o)).getEntity();
+
+			if (p.getFoto() != null) {
+				i++;
+				Image image = new Image(p.getCodinomes(), new ExternalResource(p.getFoto()));
+				image.addClickListener(new MouseEvents.ClickListener() {
+					@Override
+					public void click(com.vaadin.event.MouseEvents.ClickEvent event) {
+						// TODO Auto-generated method stub
+						System.err.println("CLICOU");
+					}
+				});
+				// pictureButton.setStyleName("Button.STYLE_LINK");
+				gl.addComponent(image);
+				gl.setComponentAlignment(image, Alignment.MIDDLE_CENTER);
+			}
 		}
+		return gl;
 	}
 
 	@Override

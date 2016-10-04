@@ -13,8 +13,8 @@ public class MainUI extends UI {
 
 	@Override
 	protected void init(VaadinRequest request) {
-		//PainelPrincipal pp = new PainelPrincipal();
-		//setContent(pp);
+		//PainelPrincipal pp = ;
+		//setContent(new PainelPrincipal());
 		setContent(new FotosUI());
 		// VerticalLayout view = new VerticalLayout();
 		// view.addComponent(new Label("Hello Vaadin!"));

@@ -16,9 +16,9 @@ public class ContainerJPAPartido extends JPAContainer<Partido> {
         setParentProperty("parent");
     }
 
-    @Override
-    public boolean areChildrenAllowed(Object itemId) {
-        return super.areChildrenAllowed(itemId)
-                && getItem(itemId).getEntity().isSuperPartido();
-    }
+//    @Override
+//    public boolean areChildrenAllowed(Object itemId) {
+//        return super.areChildrenAllowed(itemId)
+//                && getItem(itemId).getEntity().isSuperPartido();
+//    }
 }
