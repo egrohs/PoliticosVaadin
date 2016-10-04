@@ -13,7 +13,7 @@ public class MainUI extends UI {
 
 	@Override
 	protected void init(VaadinRequest request) {
-		PainelPrincipal pp = new PainelPrincipal();
+		//PainelPrincipal pp = new PainelPrincipal();
 		//setContent(pp);
 		setContent(new FotosUI());
 		// VerticalLayout view = new VerticalLayout();

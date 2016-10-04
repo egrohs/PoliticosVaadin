@@ -15,8 +15,6 @@
  */
 package com.vaadin.demo.jpaaddressbook;
 
-import java.util.Iterator;
-
 import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.addon.jpacontainer.JPAContainerFactory;
 import com.vaadin.data.Property;
@@ -45,179 +43,169 @@ import com.vaadin.ui.Tree;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-public class PainelPrincipal extends HorizontalSplitPanel implements
-        ComponentContainer {
+public class PainelPrincipal extends HorizontalSplitPanel implements ComponentContainer {
 
-    private Tree groupTree;
+	private Tree groupTree;
 
-    private Table personTable;
+	private Table personTable;
 
-    private TextField searchField;
+	private TextField searchField;
 
-    private Button newButton;
-    private Button deleteButton;
-    private Button editButton;
+	private Button newButton;
+	private Button deleteButton;
+	private Button editButton;
 
-    private JPAContainer<Partido> containerPartidos;
-    private JPAContainer<Politico> containerPoliticos;
+	private JPAContainer<Partido> containerPartidos;
+	private JPAContainer<Politico> containerPoliticos;
 
-    private Partido departmentFilter;
-    private String textFilter;
-public Table getTable(){
-	return personTable;
-}
-    public PainelPrincipal() {
-        containerPartidos = new ContainerJPAPartido();
-        containerPoliticos = JPAContainerFactory.make(Politico.class,
-                MainUI.PERSISTENCE_UNIT);
-   //     buildTree();
-        buildMainArea();
+	private Partido departmentFilter;
+	private String textFilter;
 
-        setSplitPosition(30);
-    }
+	public PainelPrincipal() {
+		containerPartidos = new ContainerJPAPartido();
+		containerPoliticos = JPAContainerFactory.make(Politico.class, MainUI.PERSISTENCE_UNIT);
+		// buildTree();
+		buildMainArea();
 
-    private void buildMainArea() {
-        VerticalLayout verticalLayout = new VerticalLayout();
-        setSecondComponent(verticalLayout);
+		setSplitPosition(30);
+	}
 
-        personTable = new Table(null, containerPoliticos);
+	private void buildMainArea() {
+		VerticalLayout verticalLayout = new VerticalLayout();
+		setSecondComponent(verticalLayout);
 
-        personTable.setSelectable(true);
-        personTable.setImmediate(true);
-        personTable.addListener(new Property.ValueChangeListener() {
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                setModificationsEnabled(event.getProperty().getValue() != null);
-            }
+		personTable = new Table(null, containerPoliticos);
+		personTable.setSelectable(true);
+		personTable.setImmediate(true);
+		personTable.addListener(new Property.ValueChangeListener() {
+			@Override
+			public void valueChange(ValueChangeEvent event) {
+				setModificationsEnabled(event.getProperty().getValue() != null);
+			}
 
-            private void setModificationsEnabled(boolean b) {
-                deleteButton.setEnabled(b);
-                editButton.setEnabled(b);
-            }
-        });
+			private void setModificationsEnabled(boolean b) {
+				deleteButton.setEnabled(b);
+				editButton.setEnabled(b);
+			}
+		});
 
-        personTable.setSizeFull();
-        // personTable.setSelectable(true);
-        personTable.addListener(new ItemClickListener() {
-            @Override
-            public void itemClick(ItemClickEvent event) {
-                if (event.isDoubleClick()) {
-                    personTable.select(event.getItemId());
-                }
-            }
-        });
+		personTable.setSizeFull();
+		// personTable.setSelectable(true);
+		personTable.addListener(new ItemClickListener() {
+			@Override
+			public void itemClick(ItemClickEvent event) {
+				if (event.isDoubleClick()) {
+					personTable.select(event.getItemId());
+				}
+			}
+		});
 
-        personTable.setVisibleColumns(new Object[] { "firstName", "lastName",
-                "phoneNumber", "street", "city", "zipCode" });
+		personTable.setVisibleColumns(
+				new Object[] { "firstName", "lastName", "phoneNumber", "street", "city", "zipCode" });
 
-        HorizontalLayout toolbar = new HorizontalLayout();
-        newButton = new Button("Add");
-        newButton.addClickListener(new Button.ClickListener() {
+		HorizontalLayout toolbar = new HorizontalLayout();
+		newButton = new Button("Add");
+		newButton.addClickListener(new Button.ClickListener() {
 
-            @Override
-            public void buttonClick(ClickEvent event) {
-                final BeanItem<Politico> newPersonItem = new BeanItem<Politico>(
-                        new Politico());
-                JanelaPoliticos personEditor = new JanelaPoliticos(newPersonItem);
-                personEditor.addListener(new EditorSavedListener() {
-                    @Override
-                    public void editorSaved(EditorSavedEvent event) {
-                        containerPoliticos.addEntity(newPersonItem.getBean());
-                    }
-                });
-                UI.getCurrent().addWindow(personEditor);
-            }
-        });
+			@Override
+			public void buttonClick(ClickEvent event) {
+				final BeanItem<Politico> newPersonItem = new BeanItem<Politico>(new Politico());
+				JanelaPoliticos personEditor = new JanelaPoliticos(newPersonItem);
+				personEditor.addListener(new EditorSavedListener() {
+					@Override
+					public void editorSaved(EditorSavedEvent event) {
+						containerPoliticos.addEntity(newPersonItem.getBean());
+					}
+				});
+				UI.getCurrent().addWindow(personEditor);
+			}
+		});
 
-        deleteButton = new Button("Delete");
-        deleteButton.addClickListener(new Button.ClickListener() {
+		deleteButton = new Button("Delete");
+		deleteButton.addClickListener(new Button.ClickListener() {
 
-            @Override
-            public void buttonClick(ClickEvent event) {
-                containerPoliticos.removeItem(personTable.getValue());
-            }
-        });
-        deleteButton.setEnabled(false);
+			@Override
+			public void buttonClick(ClickEvent event) {
+				containerPoliticos.removeItem(personTable.getValue());
+			}
+		});
+		deleteButton.setEnabled(false);
 
-        editButton = new Button("Edit");
-        editButton.addClickListener(new Button.ClickListener() {
+		editButton = new Button("Edit");
+		editButton.addClickListener(new Button.ClickListener() {
 
-            @Override
-            public void buttonClick(ClickEvent event) {
-                UI.getCurrent().addWindow(
-                        new JanelaPoliticos(personTable.getItem(personTable
-                                .getValue())));
-            }
-        });
-        editButton.setEnabled(false);
+			@Override
+			public void buttonClick(ClickEvent event) {
+				UI.getCurrent().addWindow(new JanelaPoliticos(personTable.getItem(personTable.getValue())));
+			}
+		});
+		editButton.setEnabled(false);
 
-        searchField = new TextField();
-        searchField.setInputPrompt("Search by name");
-        searchField.addTextChangeListener(new TextChangeListener() {
+		searchField = new TextField();
+		searchField.setInputPrompt("Search by name");
+		searchField.addTextChangeListener(new TextChangeListener() {
 
-            @Override
-            public void textChange(TextChangeEvent event) {
-                textFilter = event.getText();
-                updateFilters();
-            }
-        });
+			@Override
+			public void textChange(TextChangeEvent event) {
+				textFilter = event.getText();
+				updateFilters();
+			}
+		});
 
-        toolbar.addComponent(newButton);
-        toolbar.addComponent(deleteButton);
-        toolbar.addComponent(editButton);
-        toolbar.addComponent(searchField);
-        toolbar.setWidth("100%");
-        toolbar.setExpandRatio(searchField, 1);
-        toolbar.setComponentAlignment(searchField, Alignment.TOP_RIGHT);
+		toolbar.addComponent(newButton);
+		toolbar.addComponent(deleteButton);
+		toolbar.addComponent(editButton);
+		toolbar.addComponent(searchField);
+		toolbar.setWidth("100%");
+		toolbar.setExpandRatio(searchField, 1);
+		toolbar.setComponentAlignment(searchField, Alignment.TOP_RIGHT);
 
-        verticalLayout.addComponent(toolbar);
-        verticalLayout.addComponent(personTable);
-        verticalLayout.setExpandRatio(personTable, 1);
-        verticalLayout.setSizeFull();
-    }
+		verticalLayout.addComponent(toolbar);
+		verticalLayout.addComponent(personTable);
+		verticalLayout.setExpandRatio(personTable, 1);
+		verticalLayout.setSizeFull();
+	}
 
-    private void buildTree() {
-        groupTree = new Tree(null, containerPartidos);
-        groupTree.setItemCaptionPropertyId("name");
+	private void buildTree() {
+		groupTree = new Tree(null, containerPartidos);
+		groupTree.setItemCaptionPropertyId("name");
 
-        groupTree.setImmediate(true);
-        groupTree.setSelectable(true);
-        groupTree.addListener(new Property.ValueChangeListener() {
+		groupTree.setImmediate(true);
+		groupTree.setSelectable(true);
+		groupTree.addListener(new Property.ValueChangeListener() {
 
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                Object id = event.getProperty().getValue();
-                if (id != null) {
-                    Partido entity = containerPartidos.getItem(id).getEntity();
-                    departmentFilter = entity;
-                } else if (departmentFilter != null) {
-                    departmentFilter = null;
-                }
-                updateFilters();
-            }
+			@Override
+			public void valueChange(ValueChangeEvent event) {
+				Object id = event.getProperty().getValue();
+				if (id != null) {
+					Partido entity = containerPartidos.getItem(id).getEntity();
+					departmentFilter = entity;
+				} else if (departmentFilter != null) {
+					departmentFilter = null;
+				}
+				updateFilters();
+			}
 
-        });
-        setFirstComponent(groupTree);
-    }
+		});
+		setFirstComponent(groupTree);
+	}
 
-    private void updateFilters() {
-        containerPoliticos.setApplyFiltersImmediately(false);
-        containerPoliticos.removeAllContainerFilters();
-        if (departmentFilter != null) {
-            // two level hierarchy at max in our demo
-            if (departmentFilter.getParent() == null) {
-                containerPoliticos.addContainerFilter(new Equal("department.parent",
-                        departmentFilter));
-            } else {
-                containerPoliticos.addContainerFilter(new Equal("department",
-                        departmentFilter));
-            }
-        }
-        if (textFilter != null && !textFilter.equals("")) {
-            Or or = new Or(new Like("firstName", textFilter + "%", false),
-                    new Like("lastName", textFilter + "%", false));
-            containerPoliticos.addContainerFilter(or);
-        }
-        containerPoliticos.applyFilters();
-    }
+	private void updateFilters() {
+		containerPoliticos.setApplyFiltersImmediately(false);
+		containerPoliticos.removeAllContainerFilters();
+		if (departmentFilter != null) {
+			// two level hierarchy at max in our demo
+			if (departmentFilter.getParent() == null) {
+				containerPoliticos.addContainerFilter(new Equal("department.parent", departmentFilter));
+			} else {
+				containerPoliticos.addContainerFilter(new Equal("department", departmentFilter));
+			}
+		}
+		if (textFilter != null && !textFilter.equals("")) {
+			Or or = new Or(new Like("firstName", textFilter + "%", false),
+					new Like("lastName", textFilter + "%", false));
+			containerPoliticos.addContainerFilter(or);
+		}
+		containerPoliticos.applyFilters();
+	}
 }
