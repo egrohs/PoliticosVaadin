@@ -33,7 +33,7 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.Window;
 
 @SuppressWarnings("serial")
-public class PersonEditor extends Window implements Button.ClickListener,
+public class JanelaPoliticos extends Window implements Button.ClickListener,
         FormFieldFactory {
 
     private final Item personItem;
@@ -41,7 +41,7 @@ public class PersonEditor extends Window implements Button.ClickListener,
     private Button saveButton;
     private Button cancelButton;
 
-    public PersonEditor(Item personItem) {
+    public JanelaPoliticos(Item personItem) {
         this.personItem = personItem;
         editorForm = new Form();
         editorForm.setFormFieldFactory(this);
@@ -97,7 +97,7 @@ public class PersonEditor extends Window implements Button.ClickListener,
         Field field = DefaultFieldFactory.get().createField(item, propertyId,
                 uiContext);
         if ("department".equals(propertyId)) {
-            field = new DepartmentSelector();
+            field = new ConstrutorModal();
         } else if (field instanceof TextField) {
             ((TextField) field).setNullRepresentation("");
         }

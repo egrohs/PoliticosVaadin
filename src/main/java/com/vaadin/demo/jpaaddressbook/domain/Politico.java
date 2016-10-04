@@ -12,11 +12,9 @@ import javax.validation.constraints.Size;
 
 @Entity
 public class Politico {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @NotNull
     @Size(min = 2, max = 24)
     private String firstName;

@@ -25,7 +25,7 @@ import javax.persistence.Persistence;
 import com.vaadin.demo.jpaaddressbook.domain.Partido;
 import com.vaadin.demo.jpaaddressbook.domain.Politico;
 
-public class DemoDataGenerator {
+public class DadosInicias {
 
 	final static String[] groupsNames = { "Corporate Development",
 			"Human Resources", "Legal", "Environment", "Quality Assurance",
