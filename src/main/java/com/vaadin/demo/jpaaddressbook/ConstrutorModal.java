@@ -1,18 +1,3 @@
-/**
- * Copyright 2009-2013 Oy Vaadin Ltd
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.vaadin.demo.jpaaddressbook;
 
 import com.vaadin.addon.jpacontainer.EntityItem;
@@ -28,21 +13,18 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.CustomField;
 
-/**
- * A custom field that allows selection of a department.
- */
-public class DepartmentSelector extends CustomField<Partido> {
+public class ConstrutorModal extends CustomField<Partido> {
     private ComboBox geographicalDepartment = new ComboBox();
     private ComboBox department = new ComboBox();
 
     private JPAContainer<Partido> container;
     private JPAContainer<Partido> geoContainer;
 
-    public DepartmentSelector() {
+    public ConstrutorModal() {
         container = JPAContainerFactory.make(Partido.class,
-                JpaAddressbookUI.PERSISTENCE_UNIT);
+                MainUI.PERSISTENCE_UNIT);
         geoContainer = JPAContainerFactory.make(Partido.class,
-                JpaAddressbookUI.PERSISTENCE_UNIT);
+                MainUI.PERSISTENCE_UNIT);
         setCaption("Department");
         // Only list "roots" which are in our example geographical super
         // departments

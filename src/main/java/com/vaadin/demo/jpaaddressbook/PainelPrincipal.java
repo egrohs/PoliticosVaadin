@@ -23,8 +23,8 @@ import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.filter.Compare.Equal;
 import com.vaadin.data.util.filter.Like;
 import com.vaadin.data.util.filter.Or;
-import com.vaadin.demo.jpaaddressbook.PersonEditor.EditorSavedEvent;
-import com.vaadin.demo.jpaaddressbook.PersonEditor.EditorSavedListener;
+import com.vaadin.demo.jpaaddressbook.JanelaPoliticos.EditorSavedEvent;
+import com.vaadin.demo.jpaaddressbook.JanelaPoliticos.EditorSavedListener;
 import com.vaadin.demo.jpaaddressbook.domain.Partido;
 import com.vaadin.demo.jpaaddressbook.domain.Politico;
 import com.vaadin.event.FieldEvents.TextChangeEvent;
@@ -43,7 +43,7 @@ import com.vaadin.ui.Tree;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-public class AddressBookMainView extends HorizontalSplitPanel implements
+public class PainelPrincipal extends HorizontalSplitPanel implements
         ComponentContainer {
 
     private Tree groupTree;
@@ -56,17 +56,17 @@ public class AddressBookMainView extends HorizontalSplitPanel implements
     private Button deleteButton;
     private Button editButton;
 
-    private JPAContainer<Partido> departments;
-    private JPAContainer<Politico> persons;
+    private JPAContainer<Partido> containerPartidos;
+    private JPAContainer<Politico> containerPoliticos;
 
     private Partido departmentFilter;
     private String textFilter;
 
-    public AddressBookMainView() {
-        departments = new HierarchicalDepartmentContainer();
-        persons = JPAContainerFactory.make(Politico.class,
-                JpaAddressbookUI.PERSISTENCE_UNIT);
-        buildTree();
+    public PainelPrincipal() {
+        containerPartidos = new ContainerJPAPartido();
+        containerPoliticos = JPAContainerFactory.make(Politico.class,
+                MainUI.PERSISTENCE_UNIT);
+   //     buildTree();
         buildMainArea();
 
         setSplitPosition(30);
@@ -76,7 +76,7 @@ public class AddressBookMainView extends HorizontalSplitPanel implements
         VerticalLayout verticalLayout = new VerticalLayout();
         setSecondComponent(verticalLayout);
 
-        personTable = new Table(null, persons);
+        personTable = new Table(null, containerPoliticos);
         personTable.setSelectable(true);
         personTable.setImmediate(true);
         personTable.addListener(new Property.ValueChangeListener() {
@@ -103,7 +103,7 @@ public class AddressBookMainView extends HorizontalSplitPanel implements
         });
 
         personTable.setVisibleColumns(new Object[] { "firstName", "lastName",
-                "department", "phoneNumber", "street", "city", "zipCode" });
+                "phoneNumber", "street", "city", "zipCode" });
 
         HorizontalLayout toolbar = new HorizontalLayout();
         newButton = new Button("Add");
@@ -113,11 +113,11 @@ public class AddressBookMainView extends HorizontalSplitPanel implements
             public void buttonClick(ClickEvent event) {
                 final BeanItem<Politico> newPersonItem = new BeanItem<Politico>(
                         new Politico());
-                PersonEditor personEditor = new PersonEditor(newPersonItem);
+                JanelaPoliticos personEditor = new JanelaPoliticos(newPersonItem);
                 personEditor.addListener(new EditorSavedListener() {
                     @Override
                     public void editorSaved(EditorSavedEvent event) {
-                        persons.addEntity(newPersonItem.getBean());
+                        containerPoliticos.addEntity(newPersonItem.getBean());
                     }
                 });
                 UI.getCurrent().addWindow(personEditor);
@@ -129,7 +129,7 @@ public class AddressBookMainView extends HorizontalSplitPanel implements
 
             @Override
             public void buttonClick(ClickEvent event) {
-                persons.removeItem(personTable.getValue());
+                containerPoliticos.removeItem(personTable.getValue());
             }
         });
         deleteButton.setEnabled(false);
@@ -140,7 +140,7 @@ public class AddressBookMainView extends HorizontalSplitPanel implements
             @Override
             public void buttonClick(ClickEvent event) {
                 UI.getCurrent().addWindow(
-                        new PersonEditor(personTable.getItem(personTable
+                        new JanelaPoliticos(personTable.getItem(personTable
                                 .getValue())));
             }
         });
@@ -173,7 +173,7 @@ public class AddressBookMainView extends HorizontalSplitPanel implements
     }
 
     private void buildTree() {
-        groupTree = new Tree(null, departments);
+        groupTree = new Tree(null, containerPartidos);
         groupTree.setItemCaptionPropertyId("name");
 
         groupTree.setImmediate(true);
@@ -184,7 +184,7 @@ public class AddressBookMainView extends HorizontalSplitPanel implements
             public void valueChange(ValueChangeEvent event) {
                 Object id = event.getProperty().getValue();
                 if (id != null) {
-                    Partido entity = departments.getItem(id).getEntity();
+                    Partido entity = containerPartidos.getItem(id).getEntity();
                     departmentFilter = entity;
                 } else if (departmentFilter != null) {
                     departmentFilter = null;
@@ -197,23 +197,23 @@ public class AddressBookMainView extends HorizontalSplitPanel implements
     }
 
     private void updateFilters() {
-        persons.setApplyFiltersImmediately(false);
-        persons.removeAllContainerFilters();
+        containerPoliticos.setApplyFiltersImmediately(false);
+        containerPoliticos.removeAllContainerFilters();
         if (departmentFilter != null) {
             // two level hierarchy at max in our demo
             if (departmentFilter.getParent() == null) {
-                persons.addContainerFilter(new Equal("department.parent",
+                containerPoliticos.addContainerFilter(new Equal("department.parent",
                         departmentFilter));
             } else {
-                persons.addContainerFilter(new Equal("department",
+                containerPoliticos.addContainerFilter(new Equal("department",
                         departmentFilter));
             }
         }
         if (textFilter != null && !textFilter.equals("")) {
             Or or = new Or(new Like("firstName", textFilter + "%", false),
                     new Like("lastName", textFilter + "%", false));
-            persons.addContainerFilter(or);
+            containerPoliticos.addContainerFilter(or);
         }
-        persons.applyFilters();
+        containerPoliticos.applyFilters();
     }
 }
