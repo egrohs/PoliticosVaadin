@@ -1,11 +1,11 @@
-package com.vaadin.demo.jpaaddressbook;
+package com.ui;
 
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
 
+//@Theme("aaa")
 public class MainUI extends UI {
-
-	public static final String PERSISTENCE_UNIT = "addressbook";
+	public static final String PERSISTENCE_UNIT = "politicos";
 
 	static {
 		//DadosInicias.create();

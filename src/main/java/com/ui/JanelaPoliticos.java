@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.vaadin.demo.jpaaddressbook;
+package com.ui;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
+import com.modelo.Politico;
 import com.vaadin.data.Item;
 import com.vaadin.data.validator.BeanValidator;
-import com.vaadin.demo.jpaaddressbook.domain.Politico;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Component;

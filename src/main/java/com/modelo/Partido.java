@@ -1,4 +1,4 @@
-package com.vaadin.demo.jpaaddressbook.domain;
+package com.modelo;
 
 import java.sql.Date;
 import java.util.Set;

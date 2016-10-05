@@ -1,30 +1,41 @@
-10-04 17:10:32 jdbc[2]: exception
+10-05 14:11:17 jdbc[2]: exception
 org.h2.jdbc.JdbcSQLException: Table "PARTIDO" not found; SQL statement:
 ALTER TABLE PARTIDO DROP CONSTRAINT FK_PARTIDO_PARENT_ID [42102-160]
-10-04 17:10:32 jdbc[2]: exception
+10-05 14:11:17 jdbc[2]: exception
 org.h2.jdbc.JdbcSQLException: Table "POLITICO_PARTIDO" not found; SQL statement:
 ALTER TABLE POLITICO_PARTIDO DROP CONSTRAINT FK_POLITICO_PARTIDO_politicos_ID [42102-160]
-10-04 17:10:32 jdbc[2]: exception
+10-05 14:11:17 jdbc[2]: exception
 org.h2.jdbc.JdbcSQLException: Table "POLITICO_PARTIDO" not found; SQL statement:
 ALTER TABLE POLITICO_PARTIDO DROP CONSTRAINT FK_POLITICO_PARTIDO_partidos_ID [42102-160]
-10-04 17:10:32 jdbc[2]: exception
+10-05 14:11:17 jdbc[2]: exception
 org.h2.jdbc.JdbcSQLException: Table "PARTIDO" not found; SQL statement:
 DROP TABLE PARTIDO [42102-160]
-10-04 17:10:32 jdbc[2]: exception
+10-05 14:11:17 jdbc[2]: exception
 org.h2.jdbc.JdbcSQLException: Table "POLITICO" not found; SQL statement:
 DROP TABLE POLITICO [42102-160]
-10-04 17:10:32 jdbc[2]: exception
+10-05 14:11:17 jdbc[2]: exception
 org.h2.jdbc.JdbcSQLException: Table "POLITICO_PARTIDO" not found; SQL statement:
 DROP TABLE POLITICO_PARTIDO [42102-160]
-2016-10-04 17:14:25 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
-insert into politico (SELECT * FROM CSVREAD('C:\Users\99689650068\workspace\PoliticosVaadin\po.csv')) [21002-192]
+2016-10-05 14:12:22 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: IO Exception: "IOException reading <path to>\politicos.csv"; SQL statement:
+INSERT INTO POLITICO (SELECT * FROM CSVREAD('<path to>\politicos.csv', null, 'charset=UTF-8')) [90028-192]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
-	at org.h2.message.DbException.get(DbException.java:179)
-	at org.h2.message.DbException.get(DbException.java:155)
-	at org.h2.message.DbException.get(DbException.java:144)
-	at org.h2.command.dml.Insert.prepare(Insert.java:282)
-	at org.h2.command.Parser.prepareCommand(Parser.java:259)
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.tools.Csv.convertException(Csv.java:598)
+	at org.h2.tools.Csv.read(Csv.java:197)
+	at org.h2.expression.Function.getValueForColumnList(Function.java:2654)
+	at org.h2.table.FunctionTable.<init>(FunctionTable.java:66)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1249)
+	at org.h2.command.Parser.parseSelectSimpleFromPart(Parser.java:1896)
+	at org.h2.command.Parser.parseSelectSimple(Parser.java:2044)
+	at org.h2.command.Parser.parseSelectSub(Parser.java:1890)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:1711)
+	at org.h2.command.Parser.parseSelect(Parser.java:1699)
+	at org.h2.command.Parser.parseInsert(Parser.java:1058)
+	at org.h2.command.Parser.parsePrepared(Parser.java:413)
+	at org.h2.command.Parser.parse(Parser.java:317)
+	at org.h2.command.Parser.parse(Parser.java:289)
+	at org.h2.command.Parser.prepareCommand(Parser.java:254)
 	at org.h2.engine.Session.prepareLocal(Session.java:560)
 	at org.h2.engine.Session.prepareCommand(Session.java:501)
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1202)
@@ -37,24 +48,14 @@ insert into politico (SELECT * FROM CSVREAD('C:\Users\99689650068\workspace\Poli
 	at org.h2.server.web.WebThread.process(WebThread.java:164)
 	at org.h2.server.web.WebThread.run(WebThread.java:89)
 	at java.lang.Thread.run(Unknown Source)
-2016-10-04 17:15:16 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
-insert into politico (SELECT * FROM CSVREAD('C:\Users\99689650068\workspace\PoliticosVaadin\po.csv')) [21002-192]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
-	at org.h2.message.DbException.get(DbException.java:179)
-	at org.h2.message.DbException.get(DbException.java:155)
-	at org.h2.message.DbException.get(DbException.java:144)
-	at org.h2.command.dml.Insert.prepare(Insert.java:282)
-	at org.h2.command.Parser.prepareCommand(Parser.java:259)
-	at org.h2.engine.Session.prepareLocal(Session.java:560)
-	at org.h2.engine.Session.prepareCommand(Session.java:501)
-	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1202)
-	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:170)
-	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
-	at org.h2.server.web.WebApp.getResult(WebApp.java:1388)
-	at org.h2.server.web.WebApp.query(WebApp.java:1061)
-	at org.h2.server.web.WebApp$1.next(WebApp.java:1023)
-	at org.h2.server.web.WebApp$1.next(WebApp.java:1010)
-	at org.h2.server.web.WebThread.process(WebThread.java:164)
-	at org.h2.server.web.WebThread.run(WebThread.java:89)
-	at java.lang.Thread.run(Unknown Source)
+Caused by: java.io.FileNotFoundException: <path to>\politicos.csv (A sintaxe do nome do arquivo, do nome do diretório ou do rótulo do volume está incorreta)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at org.h2.store.fs.FilePathDisk.newInputStream(FilePathDisk.java:321)
+	at org.h2.store.fs.FileUtils.newInputStream(FileUtils.java:218)
+	at org.h2.tools.Csv.initRead(Csv.java:316)
+	at org.h2.tools.Csv.readResultSet(Csv.java:219)
+	at org.h2.tools.Csv.read(Csv.java:195)
+	... 25 more

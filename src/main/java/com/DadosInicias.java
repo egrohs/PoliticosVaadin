@@ -13,17 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.vaadin.demo.jpaaddressbook;
+package com;
 
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-
-import com.vaadin.demo.jpaaddressbook.domain.Partido;
-import com.vaadin.demo.jpaaddressbook.domain.Politico;
 
 public class DadosInicias {
 

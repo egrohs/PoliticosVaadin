@@ -1,17 +1,16 @@
-package com.vaadin.demo.jpaaddressbook;
+package com.ui;
 
+import com.modelo.Politico;
 import com.vaadin.addon.jpacontainer.EntityItem;
 import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.addon.jpacontainer.JPAContainerFactory;
 import com.vaadin.addon.jpacontainer.provider.CachingLocalEntityProvider;
 import com.vaadin.data.Container;
 import com.vaadin.data.Container.Viewer;
-import com.vaadin.data.util.filter.Compare.Equal;
 import com.vaadin.data.util.filter.IsNull;
 import com.vaadin.data.util.filter.Like;
 import com.vaadin.data.util.filter.Not;
 import com.vaadin.data.util.filter.Or;
-import com.vaadin.demo.jpaaddressbook.domain.Politico;
 import com.vaadin.event.MouseEvents;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.ui.Alignment;

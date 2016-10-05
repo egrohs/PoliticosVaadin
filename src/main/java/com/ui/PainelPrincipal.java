@@ -13,20 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.vaadin.demo.jpaaddressbook;
+package com.ui;
 
+import com.modelo.Partido;
+import com.modelo.Politico;
+import com.ui.JanelaPoliticos.EditorSavedEvent;
+import com.ui.JanelaPoliticos.EditorSavedListener;
 import com.vaadin.addon.jpacontainer.JPAContainer;
-import com.vaadin.addon.jpacontainer.JPAContainerFactory;
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.filter.Compare.Equal;
 import com.vaadin.data.util.filter.Like;
 import com.vaadin.data.util.filter.Or;
-import com.vaadin.demo.jpaaddressbook.JanelaPoliticos.EditorSavedEvent;
-import com.vaadin.demo.jpaaddressbook.JanelaPoliticos.EditorSavedListener;
-import com.vaadin.demo.jpaaddressbook.domain.Partido;
-import com.vaadin.demo.jpaaddressbook.domain.Politico;
 import com.vaadin.event.FieldEvents.TextChangeEvent;
 import com.vaadin.event.FieldEvents.TextChangeListener;
 import com.vaadin.event.ItemClickEvent;
@@ -37,12 +36,10 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.Tree;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
 
 public class PainelPrincipal extends GridLayout implements ComponentContainer {
 

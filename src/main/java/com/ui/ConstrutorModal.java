@@ -1,5 +1,6 @@
-package com.vaadin.demo.jpaaddressbook;
+package com.ui;
 
+import com.modelo.Partido;
 import com.vaadin.addon.jpacontainer.EntityItem;
 import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.addon.jpacontainer.JPAContainerFactory;
@@ -7,7 +8,6 @@ import com.vaadin.data.Property;
 import com.vaadin.data.util.converter.Converter;
 import com.vaadin.data.util.filter.Compare.Equal;
 import com.vaadin.data.util.filter.IsNull;
-import com.vaadin.demo.jpaaddressbook.domain.Partido;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;

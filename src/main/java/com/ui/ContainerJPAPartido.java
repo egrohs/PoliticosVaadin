@@ -1,9 +1,9 @@
-package com.vaadin.demo.jpaaddressbook;
+package com.ui;
 
+import com.modelo.Partido;
 import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.addon.jpacontainer.JPAContainerFactory;
 import com.vaadin.addon.jpacontainer.provider.CachingLocalEntityProvider;
-import com.vaadin.demo.jpaaddressbook.domain.Partido;
 
 public class ContainerJPAPartido extends JPAContainer<Partido> {
 
