@@ -73,6 +73,7 @@ public class PainelPrincipal extends GridLayout implements ComponentContainer {
 	}
 
 	private void buildMainArea() {
+		//this.setSizeFull();
 		//VerticalLayout verticalLayout = new VerticalLayout();
 		//setSecondComponent(verticalLayout);
 

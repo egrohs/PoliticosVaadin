@@ -10,6 +10,10 @@ public class MainUI extends UI {
 	static {
 		//DadosInicias.create();
 	}
+	private static MainUI ui;
+	public static MainUI getInstancia() {
+		return ui;
+	}
 
 	@Override
 	protected void init(VaadinRequest request) {
@@ -19,5 +23,6 @@ public class MainUI extends UI {
 		// VerticalLayout view = new VerticalLayout();
 		// view.addComponent(new Label("Hello Vaadin!"));
 		// setContent(view);
+		ui = this;
 	}
 }
