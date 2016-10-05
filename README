@@ -1,14 +1,13 @@
 =============================
-JPAContainer AddressBook Demo
+Brazil Corrupted Politicians
 =============================
 
---------
-Tutorial
---------
+----------------------
+Database h2 csv import
+----------------------
 
-The JPAContainer AddressBook Demo is documented in the JPAContainer Tutorial
-included in the JPAContainer installation package as well as at
-http://vaadin.com/download/jpacontainer-tutorial/ .
+INSERT INTO POLITICO (SELECT * FROM CSVREAD('<path to>\politicos.csv', null, 'charset=UTF-8'));
+...
 
 ---------------------
 Compiling and Running
@@ -27,5 +26,4 @@ Importing to Eclipse
 --------------------
 
 You should be able to import the demo project in Eclipse as a Maven project.
-You will need the m2e plugin for Eclipse. Please see the Tutorial
-for more detailed instructions.
+You will need the m2e plugin for Eclipse.
