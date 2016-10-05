@@ -1,4 +1,9 @@
 #FileLock
+<<<<<<< HEAD
 #Wed Oct 05 14:45:31 BRT 2016
 id=15795f34a5885e77496916b9f3b90e8c91908147587
+=======
+#Wed Oct 05 14:15:01 BRT 2016
+id=15795d75bb0caf9cd7f88816ce53349d355d8f777c0
+>>>>>>> branch 'master' of https://github.com/egrohs/PoliticosVaadin.git
 method=file
