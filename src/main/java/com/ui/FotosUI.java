@@ -55,7 +55,7 @@ public class FotosUI extends TabSheet implements Viewer {
 
 		// TabSheet tabsheet = new TabSheet();
 		this.addTab(montaTabImagens(), "Imagens");
-		this.addTab(new PainelPrincipal(containerPoliticos), "Tabela");
+		this.addTab(new PainelPrincipal(), "Tabela");
 
 		// this.addComponent(, 2, 2);
 		// this.addComponent(tabsheet);

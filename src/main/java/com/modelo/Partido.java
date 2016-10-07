@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -26,13 +28,22 @@ public class Partido {
 	@NotNull
 	private String espectro;
 	@NotNull
-	private String ideologia;
+	private String ideologias;
 	@ManyToMany(mappedBy = "partidos")
 	private Set<Politico> politicos;
+	@OneToMany
+    @JoinColumn(name="partido_fk") //we need to duplicate the physical information
+	private Set<Url> urls;
 	// @Transient
 	// private Boolean superPartido;
-	@ManyToOne
-	private Partido parent;
+
+	public Set<Url> getUrls() {
+		return urls;
+	}
+
+	public void setUrls(Set<Url> urls) {
+		this.urls = urls;
+	}
 
 	public Long getId() {
 		return id;
@@ -98,12 +109,12 @@ public class Partido {
 		this.espectro = espectro;
 	}
 
-	public String getIdeologia() {
-		return ideologia;
+	public String getIdeologias() {
+		return ideologias;
 	}
 
-	public void setIdeologia(String ideologia) {
-		this.ideologia = ideologia;
+	public void setIdeologias(String ideologia) {
+		this.ideologias = ideologia;
 	}
 
 	public Set<Politico> getPoliticos() {
@@ -114,14 +125,13 @@ public class Partido {
 		this.politicos = politicos;
 	}
 
-	public Partido getParent() {
-		return parent;
-	}
-
-	public void setParent(Partido parent) {
-		this.parent = parent;
-	}
-
+	// public Partido getParent() {
+	// return parent;
+	// }
+	//
+	// public void setParent(Partido parent) {
+	// this.parent = parent;
+	// }
 	// public boolean isSuperPartido() {
 	// if (superPartido == null) {
 	// superPartido = getPoliticos().size() == 0;

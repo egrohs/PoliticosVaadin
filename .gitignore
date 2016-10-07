@@ -1,1 +1,3 @@
 /target/
+/politicosh2db.lock.db
+/politicosh2db.trace.db

@@ -1,0 +1,102 @@
+id,sigla,nome,numero,dataCriacao,filiados,dataDissolucao,espectro,destino,ideologias
+1,PCO,Causa Operária,29,07/12/1995,2895,,Extrema-Esquerda,,"socialismo, comunismo,
+marxismo-leninismo, trotskismo (altamirista), Comunismo Trotskismo Marxismo-leninismo"
+2,PSTU,Socialista dos Trabalhadores Unificado,16,05/06/1994,17361,,Extrema-Esquerda,,"socialismo, comunismo, marxismo-leninismo, trotskismo (morenista), Socialismo Morenismo Trotskismo"
+3,PCB,Comunista Brasileiro,21,25/03/1922,14847,,Extrema-Esquerda,,"socialismo, comunismo,
+marxismo-leninismo, Comunismo[2][3] Marxismo-leninismo"
+4,PSOL,Socialismo e Liberdade,50,07/07/2004,120979,,Esquerda e extrema-esquerda,,"socialismo, marxismo, trotskismo (morenista, mandelista e grantista),ecossocialismo, Socialismo"
+5,PCdoB,Comunista do Brasil,65,23/06/1988,389407,,Esquerda e extrema-esquerda,,"socialismo democrático, comunismo,
+marxismo-leninismo, maoísmo, reformismo, desenvolvimentismo, Comunismo Marxismo-Leninismo[5]Socialismo do século XXI Marxismo-leninismo"
+6,PPL,Patria Livre,54,21/04/2009,37165,,Esquerda à Centro-esquerda,,"nacional-desenvolvimentismo, socialismo científico, Nacional-desenvolvimentismo,[3] Socialismo científico[4] Nacionalismo de esquerda[3]"
+7,PT,Trabalhadores,13,10/02/1980,1589260,,Esquerda à Centro-esquerda,Social-democracia,"Socialismo Democrático, Desenvolvimentismo, Lulismo Centrismo, Federalismo, Fundamentalismo, Nacionalismo, progressismo"
+8,PSB,Socialista Brasileiro,40,02/04/1947,644663,,Centro-esquerda à esquerda,Social-democracia,"Socialismo democrático, Progressismo"
+9,PDT,Democrático Trabalista,12,17/06/1979,1248632,,Centro-Esquerda,Social-democracia,"social democracia, humanismo, trabalhismo, getulismo, brizolismo, populismo,nacionalismo, Social-democracia Trabalhismo Socialismo Brizolismo Nacionalismo Getulismo (histórico)"
+10,PPS,Popular Socialista,23,26/01/1992,479886,,Centro-Esquerda,Social-democracia,"social-democracia, terceira via, parlamentarismo, Social democracia Terceira via Parlamentarismo Liberalismo social"
+11,PMN,Mobilização Nacional,33,21/04/1984,222750,,Centro-Esquerda,,"mobilização, Mobilização Reformismo Centrismo Agrarianismo"
+12,PTdoB,Trabalista do Brasil,70,15/05/1989,184816,,Centro-Esquerda,Social-democracia,"trabalhismo, nacionalismo, Getulismo, Trabalhismo Social democracia"
+13,REDE,Sustentabilidade,18,16/02/2013,15606,,Centro-Esquerda,,"social democracia, ecologismo, sustentabilidade, Sustentabilismo Progressismo Ambientalismo Social-Democracia Terceira Via"
+14,PMB,Mulher Brasileira,35,13/09/2008,27027,,Centro-Esquerda,,"direitos da mulher, Direitos da mulher"
+15,SD,Soledariedade,77,25/10/2012,161914,,Centro-Esquerda,Social-democracia,"trabalhismo, Social democracia, Trabalhismo"
+16,PTN,Trabalhista Nacional,19,02/05/1945,158777,,"Centro, Centro-Esquerda",Social-democracia,"trabalhismo, nacionalismo, Trabalhismo Social democracia Janismo (histórico)"
+17,PTB,Trabalista Brasileiro,14,15/05/1945,1191746,,"Centro, Centro-Esquerda",,"nacionalismo, trabalhismo, Getulismo, Populismo Centrismo Getulismo (histórico) Trabalhismo (histórico)"
+18,PV,Verde,43,17/01/1986,374606,,"Centro-esquerda, Centro",,"ambientalismo, liberalismo social, federalismo, Parlamentarismo, sincretismo político, Ambientalismo Ecologismo Liberalismo social Sincretismo político Progressismo[3] Supranacionalismo"
+19,PMDB,Movimento Democrático Brasileiro,15,04/12/1965,2398324,,Centro,,"Sincretismo político, Sincretismo político Partido pega-tudo"
+20,PSL,Social Liberal,17,30/10/1994,224040,,Centro,,"liberalismo social, liberalismo econômico, libertarianismo bleeding-heart, Liberalismo social Liberalismo econômico"
+21,PRP,Republicano Progressista,44,24/05/1989,248717,,"Centro-Direita, Centro",,"republicanismo, progressismo, Republicanismo Progressismo"
+22,PSD,Social Democrático,55,11/03/2011,311706,,Centro à Centro-direita,,"liberalismo economico, Liberalismo econômico"
+23,PHS,Humanista da Soliedaridade,31,06/06/1995,201673,,Centro à Centro-direita,,"humanismo, distributismo, democracia cristã, Distributismo Democracia cristã Solidarismo Humanismo, Distributismo"
+24,PRB,Republicano Brasileiro,10,16/12/2003,383684,,Centro-Direita,,"republicanismo, conservadorismo liberal, intervencionismo econômico, Conservadorismo liberal Democracia cristã Liberalismo econômico"
+25,PSDB,Social Democracia Brasileira,45,25/06/1988,1443769,,"Centro, Centro-Direita",Social-democracia,"Social democracia, Liberalismo social, Social-democracia liberal-progressismo democracia cristã socialismo democrático[2]"
+26,PEN,Ecológico Nacional,51,09/08/2011,68687,,Centro-Direita,,"sustentabilidade, ecologismo, Ambientalismo Democracia Cristã Conservadorismo social"
+27,PROS,Republicano da Ordem Social,90,04/01/2010,85599,,centro-direita e direita,,"republicanismo, laissez-faire, Christian right, Republicanismo"
+28,PTC,Trabalhista Cristão,36,11/07/1985,196558,,Centro-Direita,,"trabalhismo, capitalismo conservadorismo liberal, christian right, Liberalismo econômico (histórico) Democracia cristã Conservadorismo liberal Direita cristã Liberalismo (histórico)"
+29,NOVO,Novo,30,12/02/2011,3547,,Direita,,"Liberalismo econômico, Libertarianismo[44], Liberalismo[2][3] Liberalismo clássico Laissez-faire Neoliberalismo[4][5][6][7] Libertarianismo[8][9]"
+30,PSDC,Social Democrata Cristão,27,30/03/1995,184225,,Direita,,"democracia cristã, conservadorismo social, direita cristã, Democracia cristã Conservadorismo Direita cristã"
+31,PSC,Social Cristão,20,15/05/1985,417221,,Direita,,"Conservadorismo fiscal, Conservadorismo liberal, Conservadorismo social, Conservadorismo social Cristianismo"
+32,DEM,Democratas,25,24/01/1985,1095712,,centro-direita e direita,,"Conservadorismo liberal, Liberalismo econômico, Conservadorismo[2] Conservadorismo liberal [3] Liberalismo moderno [2] Liberalismo econômico [4]"
+33,PRTB,Renovador Trabalhista Brasileiro,28,27/11/1994,134606,,"Direita, Extrema-direita",,"trabalhismo, participalismo, conservadorismo, nacionalismo, Conservadorismo Nacionalismo Trabalhismo Populismo"
+34,PP,Progressista,11,08/08/1995,1436720,,Centro-direita à Direita,,"conservadorismo, populismo, nacionalismo,, Conservadorismo Populismo Liberalismo econômico Conservadorismo liberal Partido pega-tudo"
+35,PR,Republicano,22,26/10/2006,796764,,Centro-Direita,,"republicanismo, liberalismo social, protecionismo, Conservadorismo liberal Nacionalismo"
+36,ARENA,Aliança Renovadora Nacional,,1965,,1979,Direita,,"militarismo, autoritarismo"
+37,MDB,Movimento Democrático Brasileiro,,1966,,1979,Esquerda,,democracia
+38,MR-8,Movimento Revolucionário 8 de Outubro,,1985,,2008,esquerda,tornou-se o PPL,
+39,MTR,Movimento Trabalhista Renovador,,1959,,1965,,,trabalhismo
+40,PAN,Aposentados da Nação,26,1998,,2006,,incorporado ao PTB,
+41,PAP,de Ação Progressista,64,1990,,,,sem registro definitivo,
+42,PAS,da Ação Social,72,1990,,,,sem registro definitivo,
+43,PASART,Socialista Agrário Renovador Trabalhista,30,1985,,1989,esquerda,incorporado ao PT do B,
+44,PBM,Brasileiro de Mulheres,61,1990,,,,sem registro definitivo,
+45,PBV,Boa Vontade,,1964,,1965,,,
+46,PC-SBIC,Comunista - Seção Brasileira da Internacional Comunista,,1922,,1945,Esquerda,,comunismo
+47,PCDN,Cívico de Desenvolvimento Nacional,78,1990,,1992,,sem registro definitivo,
+48,PCN,Comunitário Nacional,31,1985,,1992,centro-direita,fundiu-se com o PDT,direita cristã
+49,PD,Democrata,68,1986,,1989,,extinto,
+50,PDC,Democrata Cristão,17,1985,,1993,direita,fundiu-se com o PDS para formar o PPR,democracia cristã
+51,PDCdoB,Democrata Cristão do Brasil,57,1989,,,centro-direita,sem registro definitivo,democracia cristã
+52,PDI,Democrático Independente,39,1985,,1986,,extinto,
+53,PDN,Democrático Nacional,51,1989,,,,sem registro definitivo,
+54,PDS,Democrático Social,11,1980,,1993,direita,fundido ao PDC para formar o PPR,conservadorismo
+55,PEB,Estudantil Brasileiro,62,1990,,,,sem registro definitivo,
+56,PES,Ecológico Social,80,1992,,,,sem registro definitivo,
+57,PFL,da Frente Liberal,25,1985,,2007,direita,tornou-se o atual DEM,conservadorismo liberal
+58,PFS,da Frente Socialista,84,1992,,,esquerda,sem registro definitivo,socialismo
+59,PGT,Geral dos Trabalhadores,30,1995,,2003,esquerda,incorporado ao PL,
+60,PHN,Humanista Nacional,49,1988,,,,sem registro definitivo,
+61,PJ,da Juventude,36,1985,,1989,direita,mudou de nome para Partido da Reconstrução Nacional (PRN),"conservadorismo liberal, democracia cristã, direita cristã"
+62,PL,Liberal,22,1985,,2006,centro,fundido com o PRONA para formar o PR,liberalismo social
+63,PLB,Liberal Brasileiro,29,1989,,,centro-direita,não chegou a disputar alguma eleição,
+64,PLC,Liberal Cristão,82,,,1990,,sem registro definitivo,
+65,PLH,Liberal Humanista,69,,,1990,,sem registro definitivo,
+66,PLP,Liberal Progressista,55,1989,,,,extinto,
+67,PLSF,Liberal Social Fluminense,,,,1965,,,
+68,PLT,Liberal Trabalhista,77,,,1989,,sem registro definitivo,
+69,PMC,Municipalista Comunitário,18,1984,,1986,,extinto,
+70,PMR,Municipalista Renovador,10,2005,,2006,direita,tornou-se o atual PRB,"democracia cristã, conservadorismo social"
+71,PMSD,Municipalista Social Democrático,75,1992,,1992,,extinto,
+72,PMUT,do Movimento de Unidade Trabalhista,53,,,1990,,extinto,
+73,PN,Nacionalista,27,1985,,1989,,extinto,
+74,PNA,Nacional dos Aposentados,48,1988,,,,extinto,
+75,PNAB,Nacional dos Aposentados do Brasil,47,1988,,,,extinto,
+76,PND,Nacionalista Democrático,37,1985,,1986,,"extinto, mas em reconstituição",
+77,PNR,da Nova República,32,1985,,1988,,extinto,
+78,PNT,Nacionalista dos Trabalhadores,67,1990,,,esquerda,Transformou-se no PNTB,trabalhismo
+79,PNTB,Nacionalista dos Trabalhadores Brasileiros,81,1989,,1992,esquerda,Incorporou-se ao PTdoB,trabalhismo
+80,POT,Orientação Trabalhista,,,,1965,,,
+81,PPB,Progressista Brasileiro,11,1995,,2003,centro-direita à direita,tornou-se o atual PP,conservadorismo
+82,PPN,Parlamentarista Nacional,76,1992,,,,extinto,
+83,PPR,Progressista Renovador,11,1993,,1995,direita,fundido ao PP para formar o PPB,conservadorismo
+84,PRN,da Reconstrução Nacional,36,1989,,2001,direita,tornou-se o atual PTC,"conservadorismo liberal, democracia cristã, direita cristã"
+85,PRONA,de Reedificação da Ordem Nacional,56,1989,,2006,direita,fundiu-se ao PL para formar o PR,nacionalismo
+86,PRS,das Reformas Sociais,71,1990,,,,extinto,
+87,PRT,Revolucionário dos Trabalhadores,16,1992,,1993,esquerda,tornou-se o PSTU,
+88,PS,Socialista,50,1985,,1989,esquerda,extinto,socialismo
+89,PSdoB,Socialista do Brasil,73,1992,,,esquerda,extinto,socialismo
+90,PSN,da Solidariedade Nacional,31,1997,,1998,centro,Transformou-se no PHS,"democracia cristã, distributismo, solidarismo"
+91,PSP,Social Progressista,,1946,,1965,,,
+92,PSR,Socialista Revolucionário,,1945,,1965,Esquerda,,
+93,PST,Social Trabalhista,18,"1988
+1996",,2003,esquerda,Incorporou-se ao PL,
+94,PSU,Socialista Unido,63,1990,,,esquerda,incorporou-se ao PTdoB,socialismo
+95,PTR,Trabalhista Renovador,28,1985,,1993,,"tornou-se o PTRB, após o mesmo fundir-se com o PST para formar o PP",
+96,PTRB,Trabalhista Renovador Brasileiro,17,1993,,1995,esquerda,tornou-se o PRTB,
+97,UDN,União Democrática Nacional,,1945,,1965,,,

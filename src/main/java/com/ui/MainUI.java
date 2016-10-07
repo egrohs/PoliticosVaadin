@@ -1,9 +1,10 @@
 package com.ui;
 
+import com.vaadin.annotations.Theme;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
 
-//@Theme("aaa")
+@Theme("mytheme")
 public class MainUI extends UI {
 	public static final String PERSISTENCE_UNIT = "politicos";
 

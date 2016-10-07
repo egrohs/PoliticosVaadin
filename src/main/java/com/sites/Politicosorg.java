@@ -7,6 +7,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 import com.modelo.Politico;
@@ -19,21 +20,25 @@ public class Politicosorg extends Site {
 	@Override
 	public List<Politico> getData(Document doc, List<Politico> politicos) throws IOException {
 		while (true) {
-			WebElement next = driver.findElement(By.xpath("a[text()='»']"));
-			Elements sels = doc.select("div > ul > li > ul > li > div > span");
-			for (Element src : sels) {// .get(1).children()) {
-				// a[Processos judiciais]
-				System.out.println(src);
-				// if (src.tagName().equals("option")) {
-				// if (name.equals(src.text())) {
-				// System.out.println(src);
-				// break;
-				// }
-				// }
+			Elements sels = doc.select("ul.parliamentarian[data-toggle]");
+			for (Element src : sels) {
+				String processos = src.select("li:matchesOwn(Processos judiciais)").first().child(0).text();
+				if (!"0".equals(processos)) {
+					String nome = src.select("li.nome > div > span").first().text().replaceFirst(" \\(.+\\)", "");
+					String url = src.select("ul").first().attr("data-url");
+					System.out.println(nome + "\t"+url);
+				}
+			}
+			WebElement next = null;
+			try {
+				next = driver.findElement(By.xpath("//a[text()='»']"));
+			} catch (NoSuchElementException e) {
+				//System.err.println("botão next paga não encontrado.");
+				System.exit(0);
 			}
 			if (next != null) {
-				next.click();
-				doc = lePagina();
+				clica(next);
+				doc = lePaginaSemAjax();
 			} else {
 				break;
 			}

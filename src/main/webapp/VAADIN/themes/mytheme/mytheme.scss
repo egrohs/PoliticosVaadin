@@ -1,0 +1,40 @@
+@import "../reindeer/reindeer.scss";
+
+@mixin mytheme {
+  @include reindeer;
+$color : green;
+.v-button-caption {
+	color:  $color;
+}
+.v-image {
+padding: 20px;
+-webkit-filter: grayscale(100%);
+//mix-blend-mode: multiply;
+//filter: grayscale(100%);
+//.rss.opacity {; filter: opacity(50%);}
+}
+
+.v-ui { 
+  background: url(img/alcatraz.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  //opacity: 1.0;
+  //filter: alpha(opacity=100);
+}
+.v-tabsheet-content {
+//background-color: transparent;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    background-color: red;
+}
+//.v-gridlayout-slot div {
+    //background-color: blue;
+//}
+//.v-gridlayout {
+    //opacity: 0.2;
+    //filter: alpha(opacity=20);
+	//background-color: green;
+//}
+}

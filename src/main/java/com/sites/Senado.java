@@ -32,7 +32,7 @@ public class Senado extends Site {
 		// leg.sendKeys("Qualquer Legislatura...");
 		leg.sendKeys("54� Legislatura (2011 - 2015)");
 		// WebElement pesq = driver.findElement(By.id("Pesquisa2"));
-		// pesq.click();
+		// clica(pesq);
 
 		Map<String, Politico> pols = new HashMap<String, Politico>();
 		for (Politico politico : politicos) {
@@ -48,7 +48,7 @@ public class Senado extends Site {
 
 	private void parseData(Map<String, Politico> politicos) throws IOException {
 		Document doc;
-		doc = lePagina();
+		doc = lePaginaSemAjax();
 		Elements lines = doc.select("tbody > tr[data-suplente]");
 		List<String> urls = new ArrayList<String>();
 		for (Element line : lines) {

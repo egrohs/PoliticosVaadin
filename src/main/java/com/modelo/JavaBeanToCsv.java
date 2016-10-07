@@ -18,7 +18,7 @@ public class JavaBeanToCsv {
 		CSVWriter csvWriter = null;
 		try {
 			// Create CSVWriter for writing to Employee.csv
-			csvWriter = new CSVWriter(new OutputStreamWriter(new FileOutputStream("politicos.csv"), "UTF-8"));
+			csvWriter = new CSVWriter(new OutputStreamWriter(new FileOutputStream("scraped.csv"), "UTF-8"));
 			BeanToCsv bc = new BeanToCsv();
 			// mapping of columns with their positions
 			ColumnPositionMappingStrategy mappingStrategy = new ColumnPositionMappingStrategy();

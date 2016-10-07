@@ -6,7 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -24,15 +26,28 @@ public class Politico {
 	private String cargos;
 	private String legislaturas;
 	private String curriculo;
-	private String foto;
-
+	private String foto;// ??? ou fica em urls ???
 	private String camaraPk;
 	private String senadoId;
 	private String uf;
 	// @NotNull
 	@ManyToMany
 	private Set<Partido> partidos;
-	public Politico(){}
+	@OneToMany
+    @JoinColumn(name="politico_fk") //we need to duplicate the physical information
+	private Set<Url> urls;
+
+	public Set<Url> getUrls() {
+		return urls;
+	}
+
+	public void setUrls(Set<Url> urls) {
+		this.urls = urls;
+	}
+
+	public Politico() {
+	}
+
 	public Politico(String camaraPk, String senadoId, String nome, String codinomes, String uf, String profissoes,
 			String cargos, String legislaturas, String foto) {
 		this.camaraPk = camaraPk;

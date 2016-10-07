@@ -15,7 +15,7 @@ public class Veja extends Site {
 	}
 
 	String name = "Zilmar Fernandes";
-	String s = "perfil/$.shtml' + '?scrollto=conteudo-rede";
+	String sufix = "perfil/$.shtml' + '?scrollto=conteudo-rede";
 
 	// todos desse site tem ocorrencias ruims...
 	public List<Politico> getData(Document doc, List<Politico> politicos) throws IOException {
@@ -26,7 +26,8 @@ public class Veja extends Site {
 				// System.out.println(src);
 				// break;
 				// }
-				System.out.println(src.attr("value"));
+				String cod = src.attr("value");
+				System.out.println(cod + "\t" + getUrl() + sufix.replaceFirst("\\$", cod));
 				// Document doc1 = Jsoup.connect(url+s.replaceFirst("\\$",
 				// )).get();
 			}

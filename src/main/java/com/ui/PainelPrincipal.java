@@ -15,15 +15,15 @@
  */
 package com.ui;
 
-import com.modelo.Partido;
 import com.modelo.Politico;
 import com.ui.JanelaPoliticos.EditorSavedEvent;
 import com.ui.JanelaPoliticos.EditorSavedListener;
 import com.vaadin.addon.jpacontainer.JPAContainer;
+import com.vaadin.addon.jpacontainer.JPAContainerFactory;
+import com.vaadin.addon.jpacontainer.provider.CachingLocalEntityProvider;
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.util.BeanItem;
-import com.vaadin.data.util.filter.Compare.Equal;
 import com.vaadin.data.util.filter.Like;
 import com.vaadin.data.util.filter.Or;
 import com.vaadin.event.FieldEvents.TextChangeEvent;
@@ -34,50 +34,36 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.ComponentContainer;
-import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.Tree;
 import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
 
-public class PainelPrincipal extends GridLayout implements ComponentContainer {
-
-	private Tree groupTree;
-
-	private Table personTable;
-
+public class PainelPrincipal extends VerticalLayout implements ComponentContainer {
+	private Table politcosTable;
 	private TextField searchField;
-
 	private Button newButton;
 	private Button deleteButton;
 	private Button editButton;
-
-	//private JPAContainer<Partido> containerPartidos;
+	// private JPAContainer<Partido> containerPartidos;
 	private JPAContainer<Politico> containerPoliticos;
-
-	private Partido departmentFilter;
+	// private Partido departmentFilter;
 	private String textFilter;
 
-	public PainelPrincipal(JPAContainer<Politico> containerPoliticos) {
-		this.containerPoliticos = containerPoliticos;
-		//containerPartidos = new ContainerJPAPartido();
-		//containerPoliticos = JPAContainerFactory.make(Politico.class, MainUI.PERSISTENCE_UNIT);
-		// buildTree();
+	public PainelPrincipal() {
+		// containerPartidos = new ContainerJPAPartido();
+		containerPoliticos = JPAContainerFactory.make(Politico.class, MainUI.PERSISTENCE_UNIT);
+		containerPoliticos.setEntityProvider(new CachingLocalEntityProvider<Politico>(Politico.class,
+				JPAContainerFactory.createEntityManagerForPersistenceUnit(MainUI.PERSISTENCE_UNIT)));
 		buildMainArea();
-
-		//setSplitPosition(30);
 	}
 
 	private void buildMainArea() {
-		//this.setSizeFull();
-		//VerticalLayout verticalLayout = new VerticalLayout();
-		//setSecondComponent(verticalLayout);
-
-		personTable = new Table(null, containerPoliticos);
-		personTable.setSelectable(true);
-		personTable.setImmediate(true);
-		personTable.addListener(new Property.ValueChangeListener() {
+		politcosTable = new Table(null, containerPoliticos);
+		politcosTable.setSelectable(true);
+		politcosTable.setImmediate(true);
+		politcosTable.addListener(new Property.ValueChangeListener() {
 			@Override
 			public void valueChange(ValueChangeEvent event) {
 				setModificationsEnabled(event.getProperty().getValue() != null);
@@ -88,19 +74,21 @@ public class PainelPrincipal extends GridLayout implements ComponentContainer {
 				editButton.setEnabled(b);
 			}
 		});
-
-		personTable.setSizeFull();
+		// politcosTable.setHeight("100%");
+		// politcosTable.setWidth("100%");
+		// politcosTable.setSizeFull();
+		// personTable.setSizeUndefined();
 		// personTable.setSelectable(true);
-		personTable.addListener(new ItemClickListener() {
+		politcosTable.addListener(new ItemClickListener() {
 			@Override
 			public void itemClick(ItemClickEvent event) {
 				if (event.isDoubleClick()) {
-					personTable.select(event.getItemId());
+					politcosTable.select(event.getItemId());
 				}
 			}
 		});
 
-		personTable.setVisibleColumns(
+		politcosTable.setVisibleColumns(
 				new Object[] { "nome", "codinomes", "profissoes", "legislaturas", "curriculo", "uf" });
 
 		HorizontalLayout toolbar = new HorizontalLayout();
@@ -126,7 +114,7 @@ public class PainelPrincipal extends GridLayout implements ComponentContainer {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				containerPoliticos.removeItem(personTable.getValue());
+				containerPoliticos.removeItem(politcosTable.getValue());
 			}
 		});
 		deleteButton.setEnabled(false);
@@ -136,7 +124,7 @@ public class PainelPrincipal extends GridLayout implements ComponentContainer {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				UI.getCurrent().addWindow(new JanelaPoliticos(personTable.getItem(personTable.getValue())));
+				UI.getCurrent().addWindow(new JanelaPoliticos(politcosTable.getItem(politcosTable.getValue())));
 			}
 		});
 		editButton.setEnabled(false);
@@ -159,27 +147,18 @@ public class PainelPrincipal extends GridLayout implements ComponentContainer {
 		toolbar.setWidth("100%");
 		toolbar.setExpandRatio(searchField, 1);
 		toolbar.setComponentAlignment(searchField, Alignment.TOP_RIGHT);
-
+		politcosTable.setPageLength(30);
 		this.addComponent(toolbar);
-		this.addComponent(personTable);
-		//this.setExpandRatio(personTable, 1);
+		this.addComponent(politcosTable);
+		this.setExpandRatio(politcosTable, 1f);
 		this.setSizeFull();
 	}
 
 	private void updateFilters() {
 		containerPoliticos.setApplyFiltersImmediately(false);
 		containerPoliticos.removeAllContainerFilters();
-		if (departmentFilter != null) {
-			// two level hierarchy at max in our demo
-			if (departmentFilter.getParent() == null) {
-				containerPoliticos.addContainerFilter(new Equal("department.parent", departmentFilter));
-			} else {
-				containerPoliticos.addContainerFilter(new Equal("department", departmentFilter));
-			}
-		}
 		if (textFilter != null && !textFilter.equals("")) {
-			Or or = new Or(new Like("nome", textFilter + "%", false),
-					new Like("codinomes", textFilter + "%", false));
+			Or or = new Or(new Like("nome", textFilter + "%", false), new Like("codinomes", textFilter + "%", false));
 			containerPoliticos.addContainerFilter(or);
 		}
 		containerPoliticos.applyFilters();

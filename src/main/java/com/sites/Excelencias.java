@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -16,13 +18,22 @@ public class Excelencias extends Site {
 
 	@Override
 	public List<Politico> getData(Document doc, List<Politico> politicos) throws IOException {
-		// Ao clicar buscar sem informar nada, ele lista todos? politos do site?
 		WebElement txt = driver.findElement(By.name("busca"));
 		txt.clear();
 		WebElement procurar = driver.findElement(By.name("btBusca"));
-		procurar.click();
-		WebElement lista = driver.findElement(By.id("contem_busca"));
-		System.out.println(lista.getText());
+		clica(procurar);
+		doc = lePaginaSemAjax();
+		Elements es = doc.select("div#contem_busca > p > a");
+		for (Element element : es) {
+			String nome = element.text();
+			nome = nome.substring(nome.indexOf(": ") + 2, nome.lastIndexOf(")"));
+			// codinome??? == div[contem_busca]/href
+			System.out.println(nome + "\t" + element.attr("href"));
+		}
+		// Abel Mesquita Jr. (DEM-RR) (nome de batismo: Abel Salvador Mesquita
+		// Junior)
+		// span.txt_pq > i[Não parece haver ocorrências]
+		// System.out.println(lista.getText());
 		return null;
 	}
 

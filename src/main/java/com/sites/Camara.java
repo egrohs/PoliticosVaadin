@@ -31,7 +31,7 @@ public class Camara extends Site {
 		WebElement leg = driver.findElement(By.name("Legislatura"));
 		leg.sendKeys("Qualquer Legislatura...");
 		WebElement pesq = driver.findElement(By.id("Pesquisa2"));
-		pesq.click();
+		clica(pesq);
 
 		// monta map
 		Map<String, Politico> pols = new HashMap<String, Politico>();
@@ -43,7 +43,7 @@ public class Camara extends Site {
 	}
 
 	private void pegaUrlsNavega(Map<String, Politico> politicos) {
-		Document doc = lePagina();
+		Document doc = lePaginaSemAjax();
 		List<String> urls = new ArrayList<String>();
 		try {
 			urls.add(doc.select("div#content > ul > li > a").first().attr("href"));
@@ -58,7 +58,7 @@ public class Camara extends Site {
 
 			try {
 				WebElement biolink = driver.findElement(By.xpath("//a[text()='Biografia']"));
-				biolink.click();
+				clica(biolink);
 			} catch (Exception e) {
 				System.out.println("Sem link biografia!");
 			}
@@ -68,7 +68,7 @@ public class Camara extends Site {
 	}
 
 	private void scrapDataCriaPolitico(Map<String, Politico> politicos, String camaraUrl) {
-		Document doc = lePagina();
+		Document doc = lePaginaSemAjax();
 		String camaraPk = driver.getCurrentUrl().split("pk=")[1].replaceFirst("\\D.+", "");
 		// System.out.println(id);
 		if (!politicos.keySet().contains(camaraPk)) {
