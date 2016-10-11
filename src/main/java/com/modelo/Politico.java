@@ -27,8 +27,8 @@ public class Politico {
 	private String legislaturas;
 	private String curriculo;
 	private String foto;// ??? ou fica em urls ???
-	private String camaraPk;
-	private String senadoId;
+	//private String camaraPk;
+	//private String senadoId;
 	private String uf;
 	// @NotNull
 	@ManyToMany
@@ -48,10 +48,10 @@ public class Politico {
 	public Politico() {
 	}
 
-	public Politico(String camaraPk, String senadoId, String nome, String codinomes, String uf, String profissoes,
+	public Politico(String nome, String codinomes, String uf, String profissoes,
 			String cargos, String legislaturas, String foto) {
-		this.camaraPk = camaraPk;
-		this.senadoId = senadoId;
+		//this.camaraPk = camaraPk;
+		//this.senadoId = senadoId;
 		this.nome = nome;
 		this.codinomes = codinomes;
 		this.uf = uf;
@@ -123,22 +123,6 @@ public class Politico {
 
 	public void setFoto(String foto) {
 		this.foto = foto;
-	}
-
-	public String getCamaraPk() {
-		return camaraPk;
-	}
-
-	public void setCamaraPk(String camaraPk) {
-		this.camaraPk = camaraPk;
-	}
-
-	public String getSenadoId() {
-		return senadoId;
-	}
-
-	public void setSenadoId(String senadoId) {
-		this.senadoId = senadoId;
 	}
 
 	public String getUf() {

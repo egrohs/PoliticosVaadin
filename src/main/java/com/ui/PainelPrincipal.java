@@ -46,6 +46,7 @@ public class PainelPrincipal extends VerticalLayout implements ComponentContaine
 	private Button newButton;
 	private Button deleteButton;
 	private Button editButton;
+	//TODO usar BeanItemContainer? ou SQLContainer invez do JPAContainer.
 	// private JPAContainer<Partido> containerPartidos;
 	private JPAContainer<Politico> containerPoliticos;
 	// private Partido departmentFilter;

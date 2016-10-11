@@ -26,14 +26,22 @@ public class Politicosorg extends Site {
 				if (!"0".equals(processos)) {
 					String nome = src.select("li.nome > div > span").first().text().replaceFirst(" \\(.+\\)", "");
 					String url = src.select("ul").first().attr("data-url");
-					System.out.println(nome + "\t"+url);
+
+					
+					
+					
+					
+					
+					
+//					new Politico(nome, nome, url, processos, nome, url, url);
+//					System.out.println(nome + "\t" + url);
 				}
 			}
 			WebElement next = null;
 			try {
 				next = driver.findElement(By.xpath("//a[text()='»']"));
 			} catch (NoSuchElementException e) {
-				//System.err.println("botão next paga não encontrado.");
+				// System.err.println("botão next paga não encontrado.");
 				System.exit(0);
 			}
 			if (next != null) {

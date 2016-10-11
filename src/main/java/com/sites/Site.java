@@ -24,7 +24,6 @@ public abstract class Site {
 	// private Document doc;
 	protected String siteURL;
 	protected List<Politico> politicos = new ArrayList<Politico>();
-
 	public abstract String getUrl();
 
 	public abstract List<Politico> getData(Document doc, List<Politico> politicos) throws IOException;

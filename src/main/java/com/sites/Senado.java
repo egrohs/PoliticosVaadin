@@ -13,6 +13,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.modelo.Politico;
+import com.modelo.Url;
 
 public class Senado extends Site {
 	public Senado() throws Exception {
@@ -21,7 +22,9 @@ public class Senado extends Site {
 
 	@Override
 	public String getUrl() {
-		return "http://www25.senado.leg.br/web/senadores/legislaturas-anteriores";
+		return "http://www25.senado.leg.br/web/senadores/senador/-/perfil/4990";
+		// return
+		// "http://www25.senado.leg.br/web/senadores/legislaturas-anteriores";
 	}
 
 	@Override
@@ -68,8 +71,8 @@ public class Senado extends Site {
 			String nome = doc.select("dt:matchesOwn(Nome civil:)").first().nextElementSibling().text();
 			String codinome = doc.select("h1 > span").first().text();
 			String foto = doc.select("div > img").first().attr("src");
-			Politico politico = new Politico("", idsen, nome, codinome, "uf", "profissoes", "Senado", "legislaturas",
-					foto);
+			Politico politico = new Politico(nome, codinome, "uf", "profissoes", "Senado", "legislaturas", foto);
+			Url u = new Url(idsen, false, url, politico);
 			politicos.put(idsen, politico);
 			System.out.println(politico);
 		}

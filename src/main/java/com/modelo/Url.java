@@ -13,15 +13,31 @@ public class Url {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	private boolean sujo;
 	@NotNull
 	private String url;
-	private String tipo;
+	private String urlId;
 	@ManyToOne
-    @JoinColumn(name="politico_fk", insertable=false, updatable=false)
+	@JoinColumn(name = "politico_fk", insertable = false, updatable = false)
 	private Politico politico;
 	@ManyToOne
-    @JoinColumn(name="partido_fk", insertable=false, updatable=false)
+	@JoinColumn(name = "partido_fk", insertable = false, updatable = false)
 	private Partido partido;
+	public Url(){}
+	public Url(String urlId, boolean sujo, String url, Politico politico) {
+		this.urlId = urlId;
+		this.sujo = sujo;
+		this.url = url;
+		this.politico = politico;
+	}
+
+	public boolean isSujo() {
+		return sujo;
+	}
+
+	public void setSujo(boolean sujo) {
+		this.sujo = sujo;
+	}
 
 	public Partido getPartido() {
 		return partido;
@@ -39,12 +55,12 @@ public class Url {
 		this.url = url;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public String getUrlId() {
+		return urlId;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setUrlId(String tipo) {
+		this.urlId = tipo;
 	}
 
 	public Politico getPolitico() {
@@ -53,13 +69,5 @@ public class Url {
 
 	public void setPolitico(Politico politico) {
 		this.politico = politico;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 }
