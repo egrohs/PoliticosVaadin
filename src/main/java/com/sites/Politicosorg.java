@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
+import com.dao.Dao;
 import com.modelo.Partido;
 import com.modelo.Politico;
 
@@ -22,7 +23,7 @@ public class Politicosorg extends Site {
 	@Override
 	public List<Politico> getData(Document doc, List<Politico> politicos) throws IOException {
 		List<String> urls = new ArrayList<String>();
-		while (true) {
+		//while (true) {
 			Elements sels = doc.select("ul.parliamentarian[data-toggle]");
 			for (Element src : sels) {
 				String processos = src.select("li:matchesOwn(Processos judiciais)").first().child(0).text();
@@ -44,25 +45,43 @@ public class Politicosorg extends Site {
 				clica(next);
 				doc = lePaginaSemAjax();
 			} else {
-				break;
+				//break;
 			}
-		}
-		for (String url : urls) {
-			doc = navega(url);
-			String cpf = doc.select("li:matchesOwn(CPF: )").first().parent().text();
-			String nome = doc.select("li:matchesOwn(Nome: )").first().parent().text();
-			String codinome = doc.select("li:matchesOwn(Apelido: )").first().parent().text();
-			String estado = doc.select("li:matchesOwn(Estado: )").first().parent().text();
-			String cargo = doc.select("li:matchesOwn(Cargo: )").first().parent().text();
-			String formacao = doc.select("li:matchesOwn(Formação Acadêmica: )").first().parent().text();
-			String profissao = doc.select("li:matchesOwn(Profissão: )").first().parent().text();
-			String partido = doc.select("li:matchesOwn(Partido: )").first().parent().text();
-			String partidos = doc.select("li:matchesOwn(Filiações Patidárias: )").first().parent().text();
-			
-			Politico p = new Politico(cpf, nome, codinome, estado, cargo, formacao, profissao);
-			//Partido pp = new Partido();
+		//}
+			String url = urls.get(0);
+		//for (String url : urls) {
+			doc = navega(getUrl()+url);
+			String cpf = doc.select("label:matchesOwn(CPF:)").first().parent().text();
+			String nome = doc.select("label:matchesOwn(Nome:)").first().parent().text();
+			String codinome = doc.select("label:matchesOwn(Apelido:)").first().parent().text();
+			String estado = doc.select("label:matchesOwn(Estado:)").first().parent().text();
+			String cargo = doc.select("label:matchesOwn(Cargo:)").first().parent().text();
+			String formacao = doc.select("label:matchesOwn(Formação Acadêmica:)").first().parent().text();
+			String profissao = doc.select("label:matchesOwn(Profissão:)").first().parent().text();
+			String partido = doc.select("label:matchesOwn(Partido:)").first().parent().text();
+			String partidos = doc.select("label:matchesOwn(Filiações Partidárias:)").first().parent().text()
+					.replaceAll("\\s?\\,\\s?", ",").replaceAll(" e ", ",");
+
+			Politico opolitico = Dao.getPoliticoByCPFOrNew(cpf);
+			opolitico.setNome(cpf);
+			opolitico.setNome(nome);
+			opolitico.setCodinomes(codinome);
+			opolitico.setUf(estado);
+			opolitico.setCargos(cargo);
+			// opolitico.setFo(formacao);
+			opolitico.setProfissoes(profissao);
+
+			// Politico opolitico = new Politico(cpf, nome, codinome, estado,
+			// cargo, formacao, profissao);
+			Partido opartido = Dao.getPartidoBySiglaOrNew(partido);
+			opolitico.setPartidoAtual(opartido);
+			for (String ps : partidos.split(",")) {
+				opartido = Dao.getPartidoBySiglaOrNew(ps);
+				opolitico.getPartidos().add(opartido);
+			}
+			Dao.salvaPolitico(opolitico);
 			// System.out.println(nome + "\t" + url);
-		}
+		//}
 		return politicos;
 	}
 

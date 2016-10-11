@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -37,6 +36,15 @@ public class Partido {
 	// @Transient
 	// private Boolean superPartido;
 
+//	@Override
+//	public boolean equals(Object obj) {
+//		if(obj instanceof Partido){
+//		Partido p1 = (Partido)obj;
+//		if()
+//		}
+//		return false;
+//	}
+	
 	public Set<Url> getUrls() {
 		return urls;
 	}
