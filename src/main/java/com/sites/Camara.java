@@ -36,7 +36,7 @@ public class Camara extends Site {
 		// monta map
 		Map<String, Politico> pols = new HashMap<String, Politico>();
 		for (Politico politico : politicos) {
-			pols.put(politico.getCamaraPk(), politico);
+			//pols.put(politico.getCamaraPk(), politico);
 		}
 		pegaUrlsNavega(pols);
 		return politicos;
@@ -131,13 +131,12 @@ public class Camara extends Site {
 						System.out.println("Nao achou div.bioOutrosTitulo ou Atividades Partidárias: " + camaraUrl);
 					}
 				}
-				Politico politico = new Politico(camaraPk, "", nome, codinome, uf, profissoes, "Camara", legislaturas,
-						foto);
+				//Politico politico = new Politico(camaraPk, "", nome, codinome, uf, profissoes, "Camara", legislaturas, foto);
 				// Politico politico = new Politico(camaraPk, "", nome,
 				// codinome, uf, partidoAtual, outrosPartidos,
 				// profissoes, "Camara", legislaturas, foto, camaraUrl);
-				politicos.put(camaraUrl, politico);
-				System.out.println(politico);
+//				politicos.put(camaraUrl, politico);
+//				System.out.println(politico);
 			} catch (Exception e2) {
 				System.err.println("Nao achou div.bioNomParlamentrPartido");
 			}

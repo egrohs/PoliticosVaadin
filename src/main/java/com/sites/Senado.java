@@ -39,7 +39,7 @@ public class Senado extends Site {
 
 		Map<String, Politico> pols = new HashMap<String, Politico>();
 		for (Politico politico : politicos) {
-			pols.put(politico.getSenadoId(), politico);
+			//pols.put(politico.getSenadoId(), politico);
 		}
 		parseData(pols);
 		// // for (Element e : es) {

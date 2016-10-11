@@ -36,6 +36,8 @@ public class Politico {
 	@OneToMany
     @JoinColumn(name="politico_fk") //we need to duplicate the physical information
 	private Set<Url> urls;
+//	private String cpf;
+//	private String formacao;
 
 	public Set<Url> getUrls() {
 		return urls;
@@ -48,17 +50,16 @@ public class Politico {
 	public Politico() {
 	}
 
-	public Politico(String nome, String codinomes, String uf, String profissoes,
-			String cargos, String legislaturas, String foto) {
-		//this.camaraPk = camaraPk;
-		//this.senadoId = senadoId;
+	public Politico(String cpf, String nome, String codinome, String estado, String cargo, String formacao, String profissao){
+		//this.cpf = cpf;
 		this.nome = nome;
-		this.codinomes = codinomes;
-		this.uf = uf;
-		this.profissoes = profissoes;
-		this.cargos = cargos;
-		this.legislaturas = legislaturas;
-		this.foto = foto;
+		this.codinomes = codinome;
+		this.uf = estado;
+		//this.formacao = formacao;
+		this.profissoes = profissao;
+		this.cargos = cargo;
+		//this.legislaturas = legislaturas;
+		//this.foto = foto;
 	}
 
 	public Long getId() {
