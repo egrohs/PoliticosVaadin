@@ -1,11 +1,10 @@
 package com.modelo;
 
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -13,52 +12,45 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Partido {
+public class Partido extends Entidade {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	@NotNull
 	private String sigla;
 	private String nome;
 	private Integer numero;
 	private Date dataCriacao;
 	private Date dataDissolucao;
 	private Long filiados;
-	@NotNull
+	//@NotNull
 	private String espectro;
-	@NotNull
+	//@NotNull
 	private String ideologias;
 	@ManyToMany(mappedBy = "partidos")
 	private Set<Politico> politicos;
 	@OneToMany
-    @JoinColumn(name="partido_fk") //we need to duplicate the physical information
+	@JoinColumn(name = "partido_fk") // we need to duplicate the physical
+										// information
 	private Set<Url> urls;
+
 	// @Transient
 	// private Boolean superPartido;
+	public Partido() {
+		politicos = new HashSet<Politico>();
+	}
+	// @Override
+	// public boolean equals(Object obj) {
+	// if(obj instanceof Partido){
+	// Partido p1 = (Partido)obj;
+	// if()
+	// }
+	// return false;
+	// }
 
-//	@Override
-//	public boolean equals(Object obj) {
-//		if(obj instanceof Partido){
-//		Partido p1 = (Partido)obj;
-//		if()
-//		}
-//		return false;
-//	}
-	
 	public Set<Url> getUrls() {
 		return urls;
 	}
 
 	public void setUrls(Set<Url> urls) {
 		this.urls = urls;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getSigla() {

@@ -17,7 +17,7 @@ public class Excelencias extends Site {
 	}
 
 	@Override
-	public List<Politico> getData(Document doc, List<Politico> politicos) throws IOException {
+	public List<Politico> getData(Document doc) throws IOException {
 		WebElement txt = driver.findElement(By.name("busca"));
 		txt.clear();
 		WebElement procurar = driver.findElement(By.name("btBusca"));

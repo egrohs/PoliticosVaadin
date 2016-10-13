@@ -1,11 +1,9 @@
 package com.modelo;
 
-import java.lang.reflect.Field;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -15,22 +13,17 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Politico {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+public class Politico extends Entidade {
 	@NotNull
-	@Size(min = 2, max = 24)
+	@Size(min = 2, max = 100)
 	private String nome;
-	@Size(min = 2, max = 24)
+	@Size(min = 2, max = 1000)
 	private String codinomes;
 	private String profissoes;
 	private String cargos;
 	private String legislaturas;
 	private String curriculo;
 	private String foto;// ??? ou fica em urls ???
-	// private String camaraPk;
-	// private String senadoId;
 	private String uf;
 	@ManyToOne
 	private Partido partidoAtual;
@@ -38,52 +31,30 @@ public class Politico {
 	@ManyToMany
 	private Set<Partido> partidos;
 	@OneToMany
-	@JoinColumn(name = "politico_fk") // we need to duplicate the physical
-										// information
+	@JoinColumn(name = "politico_fk") // we need to duplicate the information
 	private Set<Url> urls;
+	@Id
 	private String cpf;
 	private String formacao;
 
 	public Politico() {
-	}
-
-	public Politico(String cpf, String nome, String codinome, String estado, String cargo, String formacao,
-			String profissao) {
-		// this.cpf = cpf;
-		this.nome = nome;
-		this.codinomes = codinome;
-		this.uf = estado;
-		// this.formacao = formacao;
-		this.profissoes = profissao;
-		this.cargos = cargo;
-		// this.legislaturas = legislaturas;
-		// this.foto = foto;
+		partidos = new HashSet<Partido>();
+		urls = new HashSet<Url>();
 	}
 
 	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		for (Field f : Politico.class.getDeclaredFields()) {
-			f.setAccessible(true);
-			try {
-				sb.append(f.get(this) + ", ");
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+	public boolean equals(Object obj) {
+		if (obj != null && obj instanceof Politico) {
+			Politico pk = (Politico) obj;
+			// TODO tratar null
+			if (cpf == null && pk.cpf == null) {
+				return super.equals(obj);
+			}
+			if (pk.cpf.equals(cpf)) {
+				return true;
 			}
 		}
-		return sb.toString();
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
+		return false;
 	}
 
 	public String getNome() {
@@ -166,13 +137,13 @@ public class Politico {
 		this.partidoAtual = partidoAtual;
 	}
 
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+	// public String getCpf() {
+	// return cpf;
+	// }
+	//
+	// public void setCpf(String cpf) {
+	// this.cpf = cpf;
+	// }
 
 	public String getFormacao() {
 		return formacao;
@@ -181,12 +152,20 @@ public class Politico {
 	public void setFormacao(String formacao) {
 		this.formacao = formacao;
 	}
-	
+
 	public Set<Url> getUrls() {
 		return urls;
 	}
 
 	public void setUrls(Set<Url> urls) {
 		this.urls = urls;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 }

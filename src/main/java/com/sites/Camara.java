@@ -25,7 +25,7 @@ public class Camara extends Site {
 	}
 
 	@Override
-	public List<Politico> getData(Document doc, List<Politico> politicos) throws IOException {
+	public List<Politico> getData(Document doc) throws IOException {
 		// WebElement nome = driver.findElement(By.id("nome"));
 		// nome.sendKeys(n);
 		WebElement leg = driver.findElement(By.name("Legislatura"));

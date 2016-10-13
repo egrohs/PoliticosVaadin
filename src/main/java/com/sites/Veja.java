@@ -18,7 +18,7 @@ public class Veja extends Site {
 	String sufix = "perfil/$.shtml' + '?scrollto=conteudo-rede";
 
 	// todos desse site tem ocorrencias ruims...
-	public List<Politico> getData(Document doc, List<Politico> politicos) throws IOException {
+	public List<Politico> getData(Document doc) throws IOException {
 		Elements sels = doc.select("select");
 		for (Element src : sels.get(1).children()) {
 			if (src.tagName().equals("option")) {

@@ -7,12 +7,16 @@ $color : green;
 	color:  $color;
 }
 .v-image {
-padding: 20px;
+//padding: 20px;
 -webkit-filter: grayscale(100%);
 //mix-blend-mode: multiply;
 //filter: grayscale(100%);
 //.rss.opacity {; filter: opacity(50%);}
 }
+
+.imagem {
+padding: 10px;
+ }
 
 .v-ui { 
   background: url(img/alcatraz.jpg) no-repeat center center fixed; 
@@ -25,9 +29,9 @@ padding: 20px;
 }
 .v-tabsheet-content {
 //background-color: transparent;
-    opacity: 0.5;
-    filter: alpha(opacity=50);
-    background-color: red;
+    //opacity: 0.5;
+   // filter: alpha(opacity=50);
+   // background-color: red;
 }
 //.v-gridlayout-slot div {
     //background-color: blue;

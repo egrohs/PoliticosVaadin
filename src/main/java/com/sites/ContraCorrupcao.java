@@ -20,7 +20,7 @@ public class ContraCorrupcao extends Site {
 	}
 
 	@Override
-	public List<Politico> getData(Document doc, List<Politico> politicos) throws IOException {
+	public List<Politico> getData(Document doc) throws IOException {
 		Elements sels = doc.select("td > div > span");
 		for (Element src : sels) {
 			System.out.println(src.text());

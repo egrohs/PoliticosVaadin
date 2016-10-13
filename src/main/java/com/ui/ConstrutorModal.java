@@ -112,9 +112,9 @@ public class ConstrutorModal extends CustomField<Partido> {
     private void setDepartment(Partido department) {
 //        geographicalDepartment.setValue(department != null ? department
 //                .getParent().getId() : null);
-    	geographicalDepartment.setValue(null);
-        this.department
-                .setValue(department != null ? department.getId() : null);
+//    	geographicalDepartment.setValue(null);
+//        this.department
+//                .setValue(department != null ? department.getId() : null);
     }
 
     @Override

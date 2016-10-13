@@ -16,7 +16,7 @@ public class Infografo extends Site {
 
 	// todos desse site tem ocorrencias ruims...
 	@Override
-	public List<Politico> getData(Document doc, List<Politico> politicos) throws IOException {
+	public List<Politico> getData(Document doc) throws IOException {
 		Elements sels = doc.select("div.alvo > strong");
 		for (Element src : sels) {
 			System.out.println(src.text());

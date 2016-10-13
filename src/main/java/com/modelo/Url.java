@@ -1,34 +1,46 @@
 package com.modelo;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
 
 @Entity
-public class Url {
+public class Url extends Entidade {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	private boolean sujo;
-	@NotNull
 	private String url;
 	private String urlId;
+	private boolean sujo;
 	@ManyToOne
 	@JoinColumn(name = "politico_fk", insertable = false, updatable = false)
 	private Politico politico;
 	@ManyToOne
 	@JoinColumn(name = "partido_fk", insertable = false, updatable = false)
 	private Partido partido;
-	public Url(){}
+
+	public Url() {
+	}
+
 	public Url(String urlId, boolean sujo, String url, Politico politico) {
 		this.urlId = urlId;
 		this.sujo = sujo;
 		this.url = url;
 		this.politico = politico;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj != null && obj instanceof Url) {
+			Url pk = (Url) obj;
+			// TODO levar em conta o id aqui?
+			if (url == null && pk.url == null) {
+				return super.equals(obj);
+			}
+			if (pk.url.equals(url)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public boolean isSujo() {

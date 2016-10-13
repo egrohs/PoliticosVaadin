@@ -20,7 +20,7 @@ public class MovimentoFichaLimpa extends Site {
 	}
 
 	@Override
-	public List<Politico> getData(Document doc, List<Politico> politicos) throws IOException {
+	public List<Politico> getData(Document doc) throws IOException {
 		Elements sels = doc.select("div > a > div");
 		for (Element src : sels) {
 			System.out.println(src.text());

@@ -28,7 +28,7 @@ public class Senado extends Site {
 	}
 
 	@Override
-	public List<Politico> getData(Document doc, List<Politico> politicos) throws IOException {
+	public List<Politico> getData(Document doc) throws IOException {
 		// WebElement nome = driver.findElement(By.id("nome"));
 		// nome.sendKeys(n);
 		WebElement leg = driver.findElement(By.id("select-legislatura"));
@@ -71,10 +71,10 @@ public class Senado extends Site {
 			String nome = doc.select("dt:matchesOwn(Nome civil:)").first().nextElementSibling().text();
 			String codinome = doc.select("h1 > span").first().text();
 			String foto = doc.select("div > img").first().attr("src");
-			Politico politico = new Politico(nome, codinome, "uf", "profissoes", "Senado", "legislaturas", foto);
-			Url u = new Url(idsen, false, url, politico);
-			politicos.put(idsen, politico);
-			System.out.println(politico);
+			//Politico politico = new Politico(nome, codinome, "uf", "profissoes", "Senado", "legislaturas", foto);
+//			Url u = new Url(idsen, false, url, politico);
+//			politicos.put(idsen, politico);
+//			System.out.println(politico);
 		}
 	}
 }
