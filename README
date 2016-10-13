@@ -6,9 +6,11 @@ Brazil Corrupted Politicians
 Database h2 csv import
 ----------------------
 
+SET foreign_key_checks = 0;
 INSERT INTO partido (SELECT * FROM CSVREAD('C:\Users\egrohs\git\PoliticosVaadin\partidos.csv', null, 'charset=UTF-8 fieldSeparator=;'));
 INSERT INTO POLITICO (SELECT * FROM CSVREAD('C:\Users\99689650068\workspace\PoliticosVaadin\politicos2.csv', null, 'charset=UTF-8'));
 ...
+SET foreign_key_checks = 1;
 
 ---------------------
 Compiling and Running

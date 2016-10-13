@@ -30,7 +30,7 @@ public class Politicosorg extends Site {
 			Elements sels = doc.select("ul.parliamentarian[data-toggle]");
 			for (Element src : sels) {
 				String processos = src.select("li:matchesOwn(Processos judiciais)").first().child(0).text();
-				//TODO BAIXAR OS  LIMPOS TB!!!
+				// TODO BAIXAR OS LIMPOS TB!!!
 				if (!"0".equals(processos)) {
 					// String nome = src.select("li.nome > div >
 					// span").first().text().replaceFirst(" \\(.+\\)", "");
@@ -62,8 +62,8 @@ public class Politicosorg extends Site {
 	private Politico atualizaPolitico(String url) {
 		Document doc;
 		doc = navega(getUrl() + url);
-		boolean sujo = !doc.select("div:matchesOwn(Processos judiciais)").first().nextElementSibling()
-				.nextElementSibling().text().equals("0");
+		int peso = Integer.parseInt(doc.select("div:matchesOwn(Processos judiciais)").first().nextElementSibling()
+				.nextElementSibling().text());
 		String cpf = doc.select("label:matchesOwn(CPF:)").first().parent().text().replaceFirst(".+\\: ", "");
 		String nome = doc.select("label:matchesOwn(Nome:)").first().parent().text().replaceFirst(".+\\: ", "");
 		String codinome = doc.select("label:matchesOwn(Apelido:)").first().parent().text().replaceFirst(".+\\: ", "");
@@ -97,10 +97,10 @@ public class Politicosorg extends Site {
 		Url u = Dao.getUrlByUrlOrNew(url);
 		opolitico.getUrls().add(u);
 		u.setUrl(url);
-		u.setSujo(sujo);
+		u.setPeso(peso);
 		u.setPolitico(opolitico);
 		u.setPartido(opartido);
-//Dao.atualizaPolitico(opolitico);
+		// Dao.atualizaPolitico(opolitico);
 		return opolitico;
 	}
 

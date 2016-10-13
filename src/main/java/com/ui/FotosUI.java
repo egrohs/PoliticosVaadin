@@ -80,11 +80,11 @@ public class FotosUI extends TabSheet implements Viewer {
 		containerPoliticos
 				.addContainerFilter(new And(new Not[] { new Not(new IsNull("foto")), new Not(new Like("foto", "")) }));
 		if (textFilter != null && !textFilter.equals("")) {
-			Or or = new Or(new Like("firstName", textFilter + "%", false),
-					new Like("lastName", textFilter + "%", false));
+			Or or = new Or(new Like("nome", textFilter + "%", false),
+					new Like("codinomes", textFilter + "%", false));
 			containerPoliticos.addContainerFilter(or);
 		}
-		containerPoliticos.sort(new Object[] { "cargos", "curriculo" }, new boolean[] { false, true });
+		containerPoliticos.sort(new Object[] { "rank" }, new boolean[] { false });
 		containerPoliticos.applyFilters();
 		// montaVisao();
 

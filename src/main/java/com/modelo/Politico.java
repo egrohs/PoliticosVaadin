@@ -14,6 +14,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 public class Politico extends Entidade {
+	private Integer rank;
 	@NotNull
 	@Size(min = 2, max = 100)
 	private String nome;
@@ -23,7 +24,7 @@ public class Politico extends Entidade {
 	private String cargos;
 	private String legislaturas;
 	private String curriculo;
-	private String foto;// ??? ou fica em urls ???
+	private String foto;
 	private String uf;
 	@ManyToOne
 	private Partido partidoAtual;
@@ -167,5 +168,13 @@ public class Politico extends Entidade {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public Integer getRank() {
+		return rank;
+	}
+
+	public void setRank(Integer rank) {
+		this.rank = rank;
 	}
 }

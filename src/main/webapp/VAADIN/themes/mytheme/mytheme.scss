@@ -7,19 +7,17 @@ $color : green;
 	color:  $color;
 }
 .v-image {
-//padding: 20px;
+padding: 10px;
 -webkit-filter: grayscale(100%);
+width: 150px;
+height: 200px;
 //mix-blend-mode: multiply;
 //filter: grayscale(100%);
 //.rss.opacity {; filter: opacity(50%);}
 }
 
-.imagem {
-padding: 10px;
- }
-
 .v-ui { 
-  background: url(img/alcatraz.jpg) no-repeat center center fixed; 
+//  background: url(img/alcatraz.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -28,6 +26,7 @@ padding: 10px;
   //filter: alpha(opacity=100);
 }
 .v-tabsheet-content {
+background: url(img/alcatraz.jpg) no-repeat center center fixed;
 //background-color: transparent;
     //opacity: 0.5;
    // filter: alpha(opacity=50);

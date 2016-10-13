@@ -10,7 +10,7 @@ public class Url extends Entidade {
 	@Id
 	private String url;
 	private String urlId;
-	private boolean sujo;
+	private Integer peso;
 	@ManyToOne
 	@JoinColumn(name = "politico_fk", insertable = false, updatable = false)
 	private Politico politico;
@@ -21,12 +21,12 @@ public class Url extends Entidade {
 	public Url() {
 	}
 
-	public Url(String urlId, boolean sujo, String url, Politico politico) {
-		this.urlId = urlId;
-		this.sujo = sujo;
-		this.url = url;
-		this.politico = politico;
-	}
+//	public Url(String urlId, boolean sujo, String url, Politico politico) {
+//		this.urlId = urlId;
+//		this.sujo = sujo;
+//		this.url = url;
+//		this.politico = politico;
+//	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -41,14 +41,6 @@ public class Url extends Entidade {
 			}
 		}
 		return false;
-	}
-
-	public boolean isSujo() {
-		return sujo;
-	}
-
-	public void setSujo(boolean sujo) {
-		this.sujo = sujo;
 	}
 
 	public Partido getPartido() {
@@ -81,5 +73,13 @@ public class Url extends Entidade {
 
 	public void setPolitico(Politico politico) {
 		this.politico = politico;
+	}
+
+	public Integer getPeso() {
+		return peso;
+	}
+
+	public void setPeso(Integer peso) {
+		this.peso = peso;
 	}
 }
