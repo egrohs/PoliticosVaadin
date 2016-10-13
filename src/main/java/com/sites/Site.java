@@ -16,6 +16,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.dao.Dao;
 import com.modelo.JavaBeanToCsv;
 import com.modelo.Politico;
 
@@ -26,7 +27,7 @@ public abstract class Site {
 	protected List<Politico> politicos = new ArrayList<Politico>();
 	public abstract String getUrl();
 
-	public abstract List<Politico> getData(Document doc, List<Politico> politicos) throws IOException;
+	public abstract List<Politico> getData(Document doc) throws IOException;
 
 	public Site(boolean needDriver) throws Exception {
 		if (needDriver) {
@@ -39,10 +40,10 @@ public abstract class Site {
 			// driver.manage().timeouts().setScriptTimeout(10,
 			// TimeUnit.SECONDS);
 		}
-		List<Politico> politicos = new ArrayList<Politico>();
 		// politicos = JavaBeanToCsv.read();// le existentes
-		politicos = getData(navega(getUrl()), politicos);
+		politicos = getData(navega(getUrl()));
 		// JavaBeanToCsv.toCSV(politicos);// salva novos
+		Dao.atualizaPoliticos(politicos);
 		if (driver != null) {
 			driver.close();
 		}

@@ -6,7 +6,8 @@ Brazil Corrupted Politicians
 Database h2 csv import
 ----------------------
 
-INSERT INTO POLITICO (SELECT * FROM CSVREAD('<path to>\politicos.csv', null, 'charset=UTF-8'));
+INSERT INTO partido (SELECT * FROM CSVREAD('C:\Users\egrohs\git\PoliticosVaadin\partidos.csv', null, 'charset=UTF-8'));
+INSERT INTO POLITICO (SELECT * FROM CSVREAD('C:\Users\egrohs\git\PoliticosVaadin\politicos.csv', null, 'charset=UTF-8'));
 ...
 
 ---------------------

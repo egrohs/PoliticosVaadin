@@ -71,7 +71,7 @@ public class FotosUI extends TabSheet implements Viewer {
 					new Like("lastName", textFilter + "%", false));
 			containerPoliticos.addContainerFilter(or);
 		}
-		containerPoliticos.sort(new Object[] {"id"}, new boolean[] {false});
+		//containerPoliticos.sort(new Object[] {"id"}, new boolean[] {false});
 		containerPoliticos.applyFilters();
 		//montaVisao();
 
