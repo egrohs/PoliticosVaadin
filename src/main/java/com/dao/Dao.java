@@ -84,8 +84,6 @@ public class Dao {
 	}
 
 	public static void atualizaPoliticos(List<Politico> politicos) {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory(MainUI.PERSISTENCE_UNIT);
-		EntityManager em = factory.createEntityManager();
 		for (Politico politico : politicos) {
 			atualizaPolitico(politico);
 		}
