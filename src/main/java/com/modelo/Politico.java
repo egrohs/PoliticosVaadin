@@ -37,7 +37,8 @@ public class Politico extends Entidade {
 	@Id
 	private String cpf;
 	private String formacao;
-
+	private String partido;
+	
 	public Politico() {
 		partidos = new HashSet<Partido>();
 		urls = new HashSet<Url>();
@@ -176,5 +177,13 @@ public class Politico extends Entidade {
 
 	public void setRank(Integer rank) {
 		this.rank = rank;
+	}
+
+	public void setPartido(String partido) {
+		this.partido = partido;
+	}
+
+	public String getPartido() {
+		return partido;
 	}
 }

@@ -35,6 +35,7 @@ public class Politicosorg extends Site {
 					// String nome = src.select("li.nome > div >
 					// span").first().text().replaceFirst(" \\(.+\\)", "");
 					String url = src.select("ul").first().attr("data-url");
+					urls.add(url);
 				}
 			}
 			WebElement next = null;
@@ -65,42 +66,58 @@ public class Politicosorg extends Site {
 		int peso = Integer.parseInt(doc.select("div:matchesOwn(Processos judiciais)").first().nextElementSibling()
 				.nextElementSibling().text());
 		String cpf = doc.select("label:matchesOwn(CPF:)").first().parent().text().replaceFirst(".+\\: ", "");
-		String nome = doc.select("label:matchesOwn(Nome:)").first().parent().text().replaceFirst(".+\\: ", "");
-		String codinome = doc.select("label:matchesOwn(Apelido:)").first().parent().text().replaceFirst(".+\\: ", "");
-		String estado = doc.select("label:matchesOwn(Estado:)").first().parent().text().replaceFirst(".+\\: ", "");
-		String cargo = doc.select("label:matchesOwn(Cargo:)").first().parent().text().replaceFirst(".+\\: ", "");
+		// String nome =
+		// doc.select("label:matchesOwn(Nome:)").first().parent().text().replaceFirst(".+\\:
+		// ", "");
+		// String codinome =
+		// doc.select("label:matchesOwn(Apelido:)").first().parent().text().replaceFirst(".+\\:
+		// ", "");
+		// String estado =
+		// doc.select("label:matchesOwn(Estado:)").first().parent().text().replaceFirst(".+\\:
+		// ", "");
+		// String cargo =
+		// doc.select("label:matchesOwn(Cargo:)").first().parent().text().replaceFirst(".+\\:
+		// ", "");
 		String formacao = doc.select("label:matchesOwn(Formação Acadêmica:)").first().parent().text()
 				.replaceFirst(".+\\: ", "");
-		String profissao = doc.select("label:matchesOwn(Profissão:)").first().parent().text().replaceFirst(".+\\: ",
-				"");
+		// String profissao =
+		// doc.select("label:matchesOwn(Profissão:)").first().parent().text().replaceFirst(".+\\:
+		// ",
+		// "");
 		String partido = doc.select("label:matchesOwn(Partido:)").first().parent().text().replaceFirst(".+\\: ", "");
-		String partidos = doc.select("label:matchesOwn(Filiações Partidárias:)").first().parent().text()
-				.replaceAll("\\s?\\,\\s?", ",").replaceAll(" e ", ",").replaceFirst(".+\\: ", "");
+		// String partidos = doc.select("label:matchesOwn(Filiações
+		// Partidárias:)").first().parent().text()
+		// .replaceAll("\\s?\\,\\s?", ",").replaceAll(" e ",
+		// ",").replaceFirst(".+\\: ", "");
 
 		Politico opolitico = Dao.getPoliticoByCPFOrNew(cpf);
 		opolitico.setCpf(cpf);
-		opolitico.setNome(nome);
-		opolitico.setCodinomes(codinome);
-		opolitico.setUf(estado);
-		opolitico.setCargos(cargo);
-		// opolitico.setFo(formacao);
-		opolitico.setProfissoes(profissao);
+		if (opolitico.getRank() == null || opolitico.getRank() < 0) {
+			opolitico.setRank(peso*-1);
+		}
+		// opolitico.setNome(nome);
+		// opolitico.setCodinomes(codinome);
+		// opolitico.setUf(estado);
+		// opolitico.setCargos(cargo);
+		opolitico.setFormacao(formacao);
+		// opolitico.setProfissoes(profissao);
+		opolitico.setPartido(partido);
 
 		// Politico opolitico = new Politico(cpf, nome, codinome, estado,
 		// cargo, formacao, profissao);
-		Partido opartido = Dao.getPartidoBySigla(partido);
-		opolitico.setPartidoAtual(opartido);
-		for (String ps : partidos.split(",")) {
-			opartido = Dao.getPartidoBySigla(ps);
-			opolitico.getPartidos().add(opartido);
-		}
-		Url u = Dao.getUrlByUrlOrNew(url);
-		opolitico.getUrls().add(u);
-		u.setUrl(url);
-		u.setPeso(peso);
-		u.setPolitico(opolitico);
-		u.setPartido(opartido);
-		// Dao.atualizaPolitico(opolitico);
+		// Partido opartido = Dao.getPartidoBySigla(partido);
+		// opolitico.setPartidoAtual(opartido);
+		// for (String ps : partidos.split(",")) {
+		// opartido = Dao.getPartidoBySigla(ps);
+		// opolitico.getPartidos().add(opartido);
+		// }
+		// Url u = Dao.getUrlByUrlOrNew(url);
+		// opolitico.getUrls().add(u);
+		// u.setUrl(url);
+		// u.setPeso(peso);
+		// u.setPolitico(opolitico);
+		// u.setPartido(opartido);
+		Dao.atualizaPolitico(opolitico);
 		return opolitico;
 	}
 

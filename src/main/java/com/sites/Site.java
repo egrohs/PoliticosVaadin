@@ -43,7 +43,7 @@ public abstract class Site {
 		// politicos = JavaBeanToCsv.read();// le existentes
 		politicos = getData(navega(getUrl()));
 		// JavaBeanToCsv.toCSV(politicos);// salva novos
-		Dao.atualizaPoliticos(politicos);
+		//Dao.atualizaPoliticos(politicos);
 		if (driver != null) {
 			driver.close();
 		}

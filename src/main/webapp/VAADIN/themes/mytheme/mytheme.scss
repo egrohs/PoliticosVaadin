@@ -9,8 +9,12 @@ $color : green;
 .v-image {
 padding: 10px;
 -webkit-filter: grayscale(100%);
-width: 150px;
 height: 200px;
+width: auto;
+//overflow: hidden;
+//background-size: cover;
+//position: absolute;
+//clip: rect(0px,60px,200px,0px);
 //mix-blend-mode: multiply;
 //filter: grayscale(100%);
 //.rss.opacity {; filter: opacity(50%);}
